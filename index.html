@@ -47,6 +47,16 @@
     z-index: 2;
   }
   .ekran.aktif { display: flex; }
+  .ekran.cikiyor { animation: ekranCikis 0.6s ease forwards; }
+  .ekran.giriyor { animation: ekranGiris 0.8s ease forwards; }
+
+  @keyframes ekranCikis {
+    to { opacity: 0; transform: scale(0.97); }
+  }
+  @keyframes ekranGiris {
+    from { opacity: 0; transform: scale(1.02); }
+    to { opacity: 1; transform: scale(1); }
+  }
 
   .eyebrow {
     font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -57,6 +67,106 @@
     margin-bottom: 18px;
     display: block;
     text-align: center;
+  }
+
+  /* ====== INTRO EKRANI ====== */
+  #ekran-intro {
+    cursor: pointer;
+  }
+  .intro-sahne {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .isik-huzme {
+    position: absolute;
+    top: -20%;
+    left: 50%;
+    width: 600px;
+    height: 140%;
+    background: radial-gradient(ellipse 50% 100% at 50% 0%, rgba(201,160,78,0.16), transparent 65%);
+    transform: translateX(-50%);
+    animation: huzmeNefes 6s ease-in-out infinite;
+    pointer-events: none;
+  }
+  @keyframes huzmeNefes {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+  }
+
+  .kartal-silüet {
+    width: min(420px, 70vw);
+    opacity: 0;
+    animation: kartalBelir 2.4s ease-out 0.3s forwards, kartalKanat 8s ease-in-out 2.7s infinite;
+    filter: drop-shadow(0 0 40px rgba(201,160,78,0.18));
+  }
+  @keyframes kartalBelir {
+    0% { opacity: 0; transform: translateY(30px) scale(0.92); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  @keyframes kartalKanat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .intro-metin {
+    position: absolute;
+    bottom: 14%;
+    left: 0; right: 0;
+    text-align: center;
+    opacity: 0;
+    animation: metinBelir 1.5s ease-out 1.6s forwards;
+  }
+  @keyframes metinBelir {
+    to { opacity: 1; }
+  }
+  .intro-baslik {
+    font-size: clamp(28px, 6vw, 44px);
+    letter-spacing: 0.1em;
+    font-weight: 400;
+  }
+  .intro-baslik em {
+    font-style: italic;
+    color: var(--kartal);
+  }
+  .intro-alt {
+    margin-top: 14px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gri);
+  }
+  .intro-alt .yanip-sondur {
+    display: inline-block;
+    margin-left: 8px;
+    animation: yanipSondur 1.4s ease-in-out infinite;
+  }
+  @keyframes yanipSondur {
+    0%, 100% { opacity: 0.25; }
+    50% { opacity: 1; }
+  }
+
+  /* parçacıklar */
+  .parcacik {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: var(--kartal);
+    border-radius: 50%;
+    opacity: 0;
+    animation: yukselParcacik linear infinite;
+  }
+  @keyframes yukselParcacik {
+    0% { opacity: 0; transform: translateY(0) scale(0.5); }
+    10% { opacity: 0.7; }
+    90% { opacity: 0.4; }
+    100% { opacity: 0; transform: translateY(-100vh) scale(1.2); }
   }
 
   /* ====== GİRİŞ EKRANI ====== */
@@ -263,7 +373,7 @@
 
   /* ====== KART EKRANI ====== */
   .kart-sahne {
-    max-width: 520px;
+    max-width: 560px;
     width: 100%;
     text-align: center;
     display: flex;
@@ -271,22 +381,62 @@
     align-items: center;
   }
 
-  .taraftar-karti {
+  /* ---- 3D Kart ---- */
+  .kart-cerceve {
     width: 100%;
     max-width: 380px;
     aspect-ratio: 16 / 10;
-    background: linear-gradient(155deg, #161616 0%, #0a0a0a 60%, #1d1d1d 100%);
-    border: 1px solid rgba(201,160,78,0.4);
+    perspective: 1200px;
+  }
+
+  .taraftar-karti {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(155deg, #1c1c1c 0%, #0a0a0a 55%, #201c14 100%);
+    border: 1px solid rgba(201,160,78,0.45);
     border-radius: 14px;
-    padding: 28px 30px;
+    padding: 26px 28px;
     position: relative;
     overflow: hidden;
     text-align: left;
     box-shadow: 0 30px 60px -20px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.02);
-    transform: rotateX(8deg) rotateY(-4deg);
-    transition: transform 0.4s ease;
+    transform-style: preserve-3d;
+    transform: rotateX(8deg) rotateY(-6deg);
+    transition: transform 0.1s ease-out;
+    will-change: transform;
   }
-  .taraftar-karti:hover { transform: rotateX(0deg) rotateY(0deg); }
+
+  /* hologram bandı */
+  .hologram-bant {
+    position: absolute;
+    top: 0; right: 0;
+    width: 64px;
+    height: 100%;
+    background: linear-gradient(180deg,
+      rgba(201,160,78,0.0) 0%,
+      rgba(201,160,78,0.35) 15%,
+      rgba(245,245,240,0.45) 30%,
+      rgba(179,55,44,0.35) 45%,
+      rgba(201,160,78,0.0) 60%,
+      rgba(245,245,240,0.4) 75%,
+      rgba(201,160,78,0.0) 100%);
+    mix-blend-mode: overlay;
+    opacity: 0.55;
+    pointer-events: none;
+    transition: transform 0.1s ease-out;
+  }
+
+  /* parlama / cam efekti hover'da */
+  .kart-parlama {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,0.16), transparent 45%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+  }
+  .kart-cerceve:hover .kart-parlama { opacity: 1; }
 
   .taraftar-karti::before {
     content: '';
@@ -297,11 +447,38 @@
     pointer-events: none;
   }
 
+  /* dokulu çizgiler - güvenlik kağıdı hissi */
+  .taraftar-karti::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(115deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 6px);
+    pointer-events: none;
+  }
+
   .kart-ust {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     font-family: 'Helvetica Neue', Arial, sans-serif;
+    position: relative;
+    z-index: 2;
+  }
+  .kart-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .kart-logo-amblem {
+    width: 22px; height: 22px;
+    border: 1.4px solid var(--kartal);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: var(--kartal);
+    flex-shrink: 0;
   }
   .kart-kulup {
     font-size: 11px;
@@ -316,7 +493,9 @@
   }
 
   .kart-orta {
-    margin-top: 28px;
+    margin-top: 26px;
+    position: relative;
+    z-index: 2;
   }
   .kart-isim-label {
     font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -327,56 +506,71 @@
     margin-bottom: 6px;
   }
   .kart-isim {
-    font-size: clamp(24px, 6vw, 34px);
+    font-size: clamp(22px, 5.5vw, 32px);
     letter-spacing: 0.04em;
   }
   .kart-rozet {
-    margin-top: 14px;
+    margin-top: 12px;
     display: inline-block;
     font-family: 'Helvetica Neue', Arial, sans-serif;
-    font-size: 11px;
+    font-size: 10px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--kirmizi-vurgu);
     border: 1px solid rgba(179,55,44,0.5);
-    padding: 6px 14px;
+    padding: 5px 12px;
     border-radius: 30px;
   }
 
   .kart-alt {
     position: absolute;
-    bottom: 24px; left: 30px; right: 30px;
+    bottom: 22px; left: 28px; right: 28px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-family: 'Helvetica Neue', Arial, sans-serif;
+    z-index: 2;
   }
   .kart-no {
-    font-size: 11px;
+    font-size: 10px;
     letter-spacing: 0.2em;
     color: var(--gri);
   }
-  .kart-amblem {
-    width: 34px; height: 34px;
-    border: 1.5px solid var(--kartal);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    color: var(--kartal);
+  .kart-cip {
+    width: 30px; height: 22px;
+    border-radius: 4px;
+    background: linear-gradient(135deg, rgba(201,160,78,0.5), rgba(201,160,78,0.15));
+    border: 1px solid rgba(201,160,78,0.5);
+    position: relative;
+  }
+  .kart-cip::before, .kart-cip::after {
+    content: '';
+    position: absolute;
+    background: rgba(10,10,10,0.4);
+  }
+  .kart-cip::before { top: 50%; left: 4px; right: 4px; height: 1px; transform: translateY(-50%); }
+  .kart-cip::after { left: 50%; top: 4px; bottom: 4px; width: 1px; transform: translateX(-50%); }
+
+  .kart-tip {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(138,138,133,0.6);
+    margin-top: 14px;
+    text-align: center;
   }
 
   /* mesaj */
   .ozel-mesaj {
-    margin-top: 40px;
+    margin-top: 36px;
     max-width: 460px;
     font-size: 16px;
     line-height: 1.9;
     color: var(--kirik-beyaz);
     font-style: italic;
     border-top: 1px solid rgba(245,245,240,0.1);
-    padding-top: 28px;
+    padding-top: 26px;
   }
   .ozel-mesaj .imza {
     display: block;
@@ -387,6 +581,99 @@
     letter-spacing: 0.3em;
     text-transform: uppercase;
     color: var(--kartal);
+  }
+
+  /* ---- Sayaç ---- */
+  .sayac-bolum {
+    margin-top: 36px;
+    width: 100%;
+    max-width: 460px;
+    border-top: 1px solid rgba(245,245,240,0.1);
+    padding-top: 26px;
+  }
+  .sayac-baslik {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gri);
+    margin-bottom: 16px;
+  }
+  .sayac-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  .sayac-kutu {
+    border: 1px solid rgba(201,160,78,0.25);
+    border-radius: 6px;
+    padding: 14px 4px;
+  }
+  .sayac-deger {
+    font-size: clamp(20px, 5vw, 30px);
+    color: var(--kartal);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+  }
+  .sayac-etiket {
+    margin-top: 6px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gri);
+  }
+
+  /* ---- Tarihçe şeridi ---- */
+  .tarihce-bolum {
+    margin-top: 36px;
+    width: 100%;
+    max-width: 460px;
+    border-top: 1px solid rgba(245,245,240,0.1);
+    padding-top: 26px;
+    text-align: left;
+  }
+  .tarihce-baslik {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gri);
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .tarihce-cizgi {
+    position: relative;
+    padding-left: 26px;
+    border-left: 1px solid rgba(201,160,78,0.25);
+    margin-left: 6px;
+  }
+  .tarihce-olay {
+    position: relative;
+    padding-bottom: 22px;
+  }
+  .tarihce-olay:last-child { padding-bottom: 0; }
+  .tarihce-olay::before {
+    content: '';
+    position: absolute;
+    left: -31px;
+    top: 4px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--kartal);
+    box-shadow: 0 0 0 3px var(--siyah), 0 0 0 4px rgba(201,160,78,0.25);
+  }
+  .tarihce-yil {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--kartal);
+    margin-bottom: 4px;
+  }
+  .tarihce-aciklama {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--kirik-beyaz);
   }
 
   /* müzik */
@@ -411,7 +698,12 @@
     gap: 10px;
   }
   .mars-btn:hover { background: var(--kartal); color: var(--siyah); }
-  .mars-btn .nota { font-size: 14px; }
+  .mars-btn .nota { font-size: 14px; display: inline-block; }
+  .mars-btn.caliyor .nota { animation: notaSallan 0.6s ease-in-out infinite; }
+  @keyframes notaSallan {
+    0%, 100% { transform: rotate(-8deg); }
+    50% { transform: rotate(8deg); }
+  }
 
   .video-sarmal {
     margin-top: 20px;
@@ -461,8 +753,9 @@
   }
 
   @media (max-width: 480px) {
+    .kart-cerceve { perspective: none; }
     .taraftar-karti { transform: none; }
-    .taraftar-karti:hover { transform: none; }
+    .sayac-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   }
 </style>
 </head>
@@ -470,8 +763,40 @@
 
 <div class="desen-katman"></div>
 
+<!-- EKRAN 0: INTRO -->
+<section class="ekran aktif" id="ekran-intro">
+  <div class="intro-sahne">
+    <div class="isik-huzme"></div>
+    <svg class="kartal-silüet" viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- stilize kartal silueti: gövde + açık kanatlar -->
+      <g fill="#1a1a1a" stroke="#c9a04e" stroke-width="1.2" stroke-opacity="0.5">
+        <path d="M200 60
+                 C 195 50, 185 45, 175 48
+                 C 120 60, 40 80, 8 130
+                 C 60 122, 110 118, 150 125
+                 C 130 140, 95 158, 60 188
+                 C 110 178, 150 168, 182 156
+                 C 188 168, 196 178, 200 188
+                 C 204 178, 212 168, 218 156
+                 C 250 168, 290 178, 340 188
+                 C 305 158, 270 140, 250 125
+                 C 290 118, 340 122, 392 130
+                 C 360 80, 280 60, 225 48
+                 C 215 45, 205 50, 200 60 Z"/>
+        <ellipse cx="200" cy="62" rx="16" ry="14"/>
+        <path d="M200 50 C 196 42, 188 38, 180 40 L 196 48 Z" fill="#c9a04e" stroke="none"/>
+        <circle cx="207" cy="58" r="2" fill="#0a0a0a" stroke="none"/>
+      </g>
+    </svg>
+    <div class="intro-metin">
+      <div class="intro-baslik">Kara Kartal<em> Çağırıyor</em></div>
+      <div class="intro-alt">Devam Etmek İçin Dokun<span class="yanip-sondur">●</span></div>
+    </div>
+  </div>
+</section>
+
 <!-- EKRAN 1: ŞİFRE -->
-<section class="ekran aktif" id="ekran-sifre">
+<section class="ekran" id="ekran-sifre">
   <div class="giris-kutu">
     <div class="arma">⚜</div>
     <span class="eyebrow">Özel Erişim · Sadakat Doğrulaması</span>
@@ -528,26 +853,84 @@
   <div class="kart-sahne">
     <span class="eyebrow">Resmi Taraftar Kartı</span>
 
-    <div class="taraftar-karti">
-      <div class="kart-ust">
-        <span class="kart-kulup">Beşiktaş JK</span>
-        <span class="kart-yil" id="kart-yil-goster">1903</span>
-      </div>
-      <div class="kart-orta">
-        <div class="kart-isim-label">Taraftar</div>
-        <div class="kart-isim" id="kart-isim-goster">Mikail</div>
-        <span class="kart-rozet" id="kart-rozet-goster">Çarşı Lideri</span>
-      </div>
-      <div class="kart-alt">
-        <span class="kart-no" id="kart-no-goster">NO. 001903</span>
-        <span class="kart-amblem">⚜</span>
+    <div class="kart-cerceve" id="kart-cerceve">
+      <div class="taraftar-karti" id="taraftar-karti">
+        <div class="hologram-bant" id="hologram-bant"></div>
+        <div class="kart-parlama" id="kart-parlama"></div>
+        <div class="kart-ust">
+          <div class="kart-logo">
+            <span class="kart-logo-amblem">⚜</span>
+            <span class="kart-kulup">Beşiktaş JK</span>
+          </div>
+          <span class="kart-yil" id="kart-yil-goster">1903</span>
+        </div>
+        <div class="kart-orta">
+          <div class="kart-isim-label">Taraftar</div>
+          <div class="kart-isim" id="kart-isim-goster">Mikail</div>
+          <span class="kart-rozet" id="kart-rozet-goster">Çarşı Lideri</span>
+        </div>
+        <div class="kart-alt">
+          <div class="kart-cip"></div>
+          <span class="kart-no" id="kart-no-goster">NO. 001903</span>
+        </div>
       </div>
     </div>
+    <div class="kart-tip">Kartı eğmek için üzerine gel</div>
 
     <div class="ozel-mesaj">
       Bu kart, sadece siyah-beyaz uğruna her şeyi göze alanlara verilir.
       Sana, kuzenine ve her zaman yanında olan herkese... iyi ki Beşiktaşlısın, iyi ki ailedensin.
       <span class="imza">— Sevgiyle, kuzenin</span>
+    </div>
+
+    <!-- SAYAÇ -->
+    <div class="sayac-bolum">
+      <div class="sayac-baslik">1903'ten Bu Yana Beşiktaşlılık</div>
+      <div class="sayac-grid">
+        <div class="sayac-kutu">
+          <div class="sayac-deger" id="sayac-yil">0</div>
+          <div class="sayac-etiket">Yıl</div>
+        </div>
+        <div class="sayac-kutu">
+          <div class="sayac-deger" id="sayac-gun">0</div>
+          <div class="sayac-etiket">Gün</div>
+        </div>
+        <div class="sayac-kutu">
+          <div class="sayac-deger" id="sayac-saat">0</div>
+          <div class="sayac-etiket">Saat</div>
+        </div>
+        <div class="sayac-kutu">
+          <div class="sayac-deger" id="sayac-saniye">0</div>
+          <div class="sayac-etiket">Saniye</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TARİHÇE -->
+    <div class="tarihce-bolum">
+      <div class="tarihce-baslik">Kısa Tarihçe</div>
+      <div class="tarihce-cizgi">
+        <div class="tarihce-olay">
+          <div class="tarihce-yil">1903</div>
+          <div class="tarihce-aciklama">Beşiktaş Jimnastik Kulübü kuruldu — Türkiye'nin en eski spor kulübü.</div>
+        </div>
+        <div class="tarihce-olay">
+          <div class="tarihce-yil">1957</div>
+          <div class="tarihce-aciklama">Süper Lig'in ilk şampiyonu oldu, siyah-beyaz tarih yazmaya başladı.</div>
+        </div>
+        <div class="tarihce-olay">
+          <div class="tarihce-yil">2013</div>
+          <div class="tarihce-aciklama">Çarşı'nın direnişi tüm dünyada "destek" kültürünün simgesi haline geldi.</div>
+        </div>
+        <div class="tarihce-olay">
+          <div class="tarihce-yil">2016</div>
+          <div class="tarihce-aciklama">Vodafone Park açıldı, yeni bir kale doğdu.</div>
+        </div>
+        <div class="tarihce-olay">
+          <div class="tarihce-yil">Bugün</div>
+          <div class="tarihce-aciklama">Ve şimdi bu kart, hikayenin yeni bir taraftarını ağırlıyor.</div>
+        </div>
+      </div>
     </div>
 
     <div class="mars-alani">
@@ -564,9 +947,34 @@
 <script>
   const DOGRU_SIFRE = "1903";
 
+  const ekranIntro = document.getElementById('ekran-intro');
   const ekranSifre = document.getElementById('ekran-sifre');
   const ekranForm = document.getElementById('ekran-form');
   const ekranKart = document.getElementById('ekran-kart');
+
+  function ekranGecis(eskiEkran, yeniEkran) {
+    eskiEkran.classList.add('cikiyor');
+    setTimeout(() => {
+      eskiEkran.classList.remove('aktif', 'cikiyor');
+      yeniEkran.classList.add('aktif', 'giriyor');
+      setTimeout(() => yeniEkran.classList.remove('giriyor'), 850);
+    }, 580);
+  }
+
+  // ---- INTRO ----
+  // yükselen parçacıklar üret
+  for (let i = 0; i < 18; i++) {
+    const p = document.createElement('div');
+    p.className = 'parcacik';
+    p.style.left = Math.random() * 100 + 'vw';
+    p.style.animationDuration = (6 + Math.random() * 8) + 's';
+    p.style.animationDelay = (Math.random() * 8) + 's';
+    ekranIntro.querySelector('.intro-sahne').appendChild(p);
+  }
+
+  ekranIntro.addEventListener('click', () => {
+    ekranGecis(ekranIntro, ekranSifre);
+  });
 
   // ---- ŞİFRE EKRANI ----
   const sifreForm = document.getElementById('sifre-form');
@@ -576,8 +984,7 @@
   sifreForm.addEventListener('submit', (e) => {
     e.preventDefault();
     if (sifreInput.value.trim() === DOGRU_SIFRE) {
-      ekranSifre.classList.remove('aktif');
-      ekranForm.classList.add('aktif');
+      ekranGecis(ekranSifre, ekranForm);
       konfetiPatlat();
     } else {
       hataMesaj.classList.add('gosteriliyor');
@@ -600,20 +1007,82 @@
 
   // ---- KART OLUŞTURMA ----
   const kartForm = document.getElementById('kart-form');
+  let secilenYil = 1903;
+
   kartForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const isim = document.getElementById('isim-input').value.trim() || 'Mikail';
     const yil = document.getElementById('yil-input').value.trim() || '1903';
+    secilenYil = parseInt(yil, 10) || 1903;
 
     document.getElementById('kart-isim-goster').textContent = isim;
     document.getElementById('kart-yil-goster').textContent = yil;
     document.getElementById('kart-rozet-goster').textContent = seciliRozet;
-    document.getElementById('kart-no-goster').textContent = 'NO. ' + yil.padStart(6, '0');
+    document.getElementById('kart-no-goster').textContent = 'NO. ' + String(yil).padStart(6, '0');
 
-    ekranForm.classList.remove('aktif');
-    ekranKart.classList.add('aktif');
+    ekranGecis(ekranForm, ekranKart);
     konfetiPatlat();
+    sayaciBaslat();
   });
+
+  // ---- 3D KART HOVER/TILT ----
+  const kartCerceve = document.getElementById('kart-cerceve');
+  const taraftarKarti = document.getElementById('taraftar-karti');
+  const hologramBant = document.getElementById('hologram-bant');
+  const kartParlama = document.getElementById('kart-parlama');
+
+  function kartHareket(e) {
+    const rect = kartCerceve.getBoundingClientRect();
+    const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+    const y = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
+    const px = x / rect.width;
+    const py = y / rect.height;
+
+    const rotateY = (px - 0.5) * 18;
+    const rotateX = (0.5 - py) * 14;
+
+    taraftarKarti.style.transform = `rotateX(${rotateX + 8}deg) rotateY(${rotateY - 6}deg)`;
+    hologramBant.style.transform = `translateX(${(px - 0.5) * -20}px)`;
+    kartParlama.style.setProperty('--mx', (px * 100) + '%');
+    kartParlama.style.setProperty('--my', (py * 100) + '%');
+  }
+
+  kartCerceve.addEventListener('mousemove', kartHareket);
+  kartCerceve.addEventListener('mouseleave', () => {
+    taraftarKarti.style.transform = 'rotateX(8deg) rotateY(-6deg)';
+    hologramBant.style.transform = 'translateX(0)';
+  });
+
+  // ---- SAYAÇ ----
+  let sayacInterval = null;
+  function sayaciBaslat() {
+    if (sayacInterval) clearInterval(sayacInterval);
+
+    function guncelle() {
+      const baslangic = new Date(secilenYil, 0, 1).getTime();
+      const simdi = Date.now();
+      let fark = Math.max(0, simdi - baslangic);
+
+      const saniyeMs = 1000, dakikaMs = 60 * saniyeMs, saatMs = 60 * dakikaMs, gunMs = 24 * saatMs;
+      const yilMs = 365.25 * gunMs;
+
+      const yil = Math.floor(fark / yilMs);
+      fark -= yil * yilMs;
+      const gun = Math.floor(fark / gunMs);
+      fark -= gun * gunMs;
+      const saat = Math.floor(fark / saatMs);
+      fark -= saat * saatMs;
+      const saniye = Math.floor(fark / saniyeMs);
+
+      document.getElementById('sayac-yil').textContent = yil;
+      document.getElementById('sayac-gun').textContent = gun;
+      document.getElementById('sayac-saat').textContent = saat;
+      document.getElementById('sayac-saniye').textContent = saniye;
+    }
+
+    guncelle();
+    sayacInterval = setInterval(guncelle, 1000);
+  }
 
   // ---- MARŞ ----
   const marsBtn = document.getElementById('mars-btn');
@@ -625,7 +1094,8 @@
     if (!marsCalindi) {
       marsIframe.src = "https://www.youtube.com/embed/UXiAyIZjk7c?autoplay=1";
       videoSarmal.classList.add('gorunur');
-      marsBtn.textContent = '♪ Marş Çalıyor...';
+      marsBtn.innerHTML = '<span class="nota">♪</span> Marş Çalıyor...';
+      marsBtn.classList.add('caliyor');
       marsCalindi = true;
     } else {
       videoSarmal.classList.toggle('gorunur');
