@@ -1,17 +1,41 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+background:#050505;
+color:white;
+overflow-x:hidden;
+}
+
+/* PARÇACIK */
+
+#particles{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-1;
+}
+
+/* GİRİŞ */
+
 .login-page{
-overflow:hidden;
-background:
-linear-gradient(
-135deg,
-#000000,
-#111111,
-#1c1c1c
-);
 height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-position:relative;
+background:
+linear-gradient(
+135deg,
+#000,
+#111,
+#1d1d1d
+);
 }
 
 .overlay{
@@ -27,28 +51,55 @@ rgba(0,0,0,.8)
 }
 
 .login-container{
-z-index:2;
 width:90%;
 max-width:700px;
-text-align:center;
-backdrop-filter:blur(15px);
-background:rgba(255,255,255,.05);
-border:1px solid rgba(255,255,255,.15);
 padding:40px;
+text-align:center;
 border-radius:25px;
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(10px);
+border:1px solid rgba(255,255,255,.1);
 box-shadow:
-0 0 30px rgba(255,255,255,.1);
+0 0 25px rgba(255,255,255,.08);
+z-index:2;
 }
 
 .kartal-logo{
-width:240px;
-margin-bottom:15px;
-animation:float 4s ease-in-out infinite;
+width:250px;
+animation:float 4s infinite ease-in-out;
 }
 
 .subtitle{
+margin-top:10px;
 opacity:.8;
-margin-bottom:25px;
+}
+
+.login-box{
+margin-top:25px;
+}
+
+input{
+width:100%;
+max-width:350px;
+padding:15px;
+border:none;
+border-radius:10px;
+margin:10px;
+font-size:16px;
+}
+
+button{
+padding:14px 30px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+font-weight:bold;
+font-size:16px;
+transition:.3s;
+}
+
+button:hover{
+transform:scale(1.05);
 }
 
 .security-info{
@@ -61,27 +112,299 @@ margin-top:25px;
 
 .security-card{
 padding:12px 20px;
-background:rgba(255,255,255,.07);
-border-radius:12px;
+background:rgba(255,255,255,.08);
+border-radius:10px;
 }
 
-#particles{
+/* HOME */
+
+.home-page{
+padding-bottom:50px;
+}
+
+.top-bar{
+padding:30px;
+text-align:center;
+}
+
+.logo{
+width:180px;
+cursor:pointer;
+transition:.4s;
+}
+
+.logo:hover{
+transform:scale(1.08);
+}
+
+.hero{
+display:flex;
+justify-content:center;
+margin-top:30px;
+}
+
+.hero-card{
+width:90%;
+max-width:700px;
+padding:30px;
+border-radius:20px;
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(10px);
+}
+
+.section{
+width:90%;
+max-width:900px;
+margin:35px auto;
+padding:25px;
+background:rgba(255,255,255,.05);
+border-radius:20px;
+}
+
+.section h2{
+margin-bottom:15px;
+}
+
+.special-list{
+list-style:none;
+}
+
+.special-list li{
+padding:10px;
+}
+
+.main-btn{
+background:white;
+color:black;
+}
+
+footer{
+margin-top:40px;
+text-align:center;
+padding:30px;
+}
+
+/* KURULUŞ SAYACI */
+
+#counter{
+font-size:24px;
+font-weight:bold;
+}
+
+/* UÇAN KARTAL */
+
+.flying-eagle{
 position:fixed;
+top:120px;
+left:-300px;
+pointer-events:none;
+z-index:50;
+}
+
+.flying-eagle img{
+width:180px;
+animation:fly 18s linear infinite;
+}
+
+/* KART SAYFASI */
+
+.card-page{
+padding:40px 20px;
+text-align:center;
+}
+
+.page-title{
+margin-bottom:25px;
+}
+
+.form-box{
+margin-bottom:30px;
+}
+
+#card{
+
+width:450px;
+max-width:95%;
+
+margin:auto;
+
+padding:25px;
+
+border-radius:25px;
+
+background:
+linear-gradient(
+135deg,
+#000,
+#111,
+#222
+);
+
+border:2px solid white;
+
+position:relative;
+
+overflow:hidden;
+
+box-shadow:
+0 0 25px rgba(255,255,255,.2);
+
+}
+
+.shine{
+
+position:absolute;
+
 top:0;
-left:0;
-width:100%;
+left:-120%;
+
+width:200%;
 height:100%;
-z-index:0;
+
+background:
+linear-gradient(
+90deg,
+transparent,
+rgba(255,255,255,.2),
+transparent
+);
+
+animation:shine 4s infinite;
+
+}
+
+.card-header{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.card-logo{
+width:80px;
+}
+
+.card-center{
+margin-top:25px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+}
+
+#preview{
+
+width:120px;
+height:120px;
+
+border-radius:15px;
+
+background:#333;
+
+object-fit:cover;
+
+border:2px solid white;
+
+}
+
+.card-info{
+text-align:left;
+}
+
+.card-info p{
+margin:10px 0;
+}
+
+.card-footer{
+margin-top:25px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.fake-qr{
+font-family:monospace;
+font-size:10px;
+line-height:12px;
+}
+
+.download-btn{
+margin-top:20px;
+background:white;
+color:black;
+}
+
+/* KARA KARTAL MODU */
+
+.kartalMode{
+
+animation:shake .2s infinite;
+
+background:black;
+
+}
+
+@keyframes shake{
+
+0%{
+transform:translate(2px,2px);
+}
+
+25%{
+transform:translate(-2px,2px);
+}
+
+50%{
+transform:translate(2px,-2px);
+}
+
+75%{
+transform:translate(-2px,-2px);
+}
+
+100%{
+transform:translate(2px,2px);
+}
+
+}
+
+/* ANİMASYONLAR */
+
+@keyframes fly{
+
+0%{
+transform:
+translateX(0)
+rotate(0deg);
+}
+
+100%{
+transform:
+translateX(calc(100vw + 500px))
+rotate(5deg);
+}
+
+}
+
+@keyframes shine{
+
+100%{
+left:120%;
+}
+
 }
 
 @keyframes float{
+
 0%{
-transform:translateY(0px);
+transform:translateY(0);
 }
+
 50%{
 transform:translateY(-12px);
 }
+
 100%{
-transform:translateY(0px);
+transform:translateY(0);
 }
+
 }
