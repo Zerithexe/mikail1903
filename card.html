@@ -1,81 +1,42 @@
-```html id="vr2n5p"
 <!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Taraftar Kartı</title>
-
 <link rel="stylesheet" href="style.css">
-
-<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-
 </head>
-<body class="card-page">
+<body>
 
-<div class="fan-card" id="card">
+<h1>Taraftar Kartı Oluştur</h1>
 
-<div class="card-overlay"></div>
+<input type="text" id="name" placeholder="Adın">
 
-<div class="card-top">
+<input type="file" id="photo">
 
-<img src="./bjklogo.png" class="card-logo">
-
-<div>
-
-<h2>BEŞİKTAŞ JK</h2>
-
-<span>Premium Taraftar Kartı</span>
-
-</div>
-
-</div>
-
-<div class="card-middle">
-
-<h1>MİKAİL</h1>
-
-<div class="info-box">
-Kart No: 1903-BJK-34
-</div>
-
-<div class="info-box">
-Takım: Beşiktaş JK
-</div>
-
-<div class="info-box">
-Lakap: Kara Kartal
-</div>
-
-<div class="info-box">
-Kuruluş: 1903
-</div>
-
-</div>
-
-<div class="card-bottom">
-
-"Asalet siyahta, umut beyazdadır."
-
-</div>
-
-</div>
-
-<div class="buttons">
-
-<button onclick="downloadCard()">
-KARTI İNDİR
+<button onclick="createCard()">
+Kart Oluştur
 </button>
 
-<a href="home.html">
-GERİ DÖN
-</a>
+<div id="card">
+
+<img src="bjklogo.png" class="card-logo">
+
+<h2 id="cardName">MİKAİL</h2>
+
+<p>Beşiktaş Taraftarı</p>
+
+<p id="cardNo"></p>
+
+<img id="preview">
 
 </div>
 
+<button onclick="downloadCard()">
+Kartı İndir
+</button>
+
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 <script src="script.js"></script>
 
 </body>
 </html>
-```
