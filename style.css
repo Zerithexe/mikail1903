@@ -1,281 +1,317 @@
+# style.css
+
+```css
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
 }
 
 body{
-    overflow-x:hidden;
+overflow-x:hidden;
 }
 
-.login-body{
-    background:black;
-    color:white;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    position:relative;
+/* LOGIN */
+
+.login-page{
+background:black;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
 }
 
-.overlay{
-    position:absolute;
-    width:100%;
-    height:100%;
-    background:linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(255,255,255,0.05));
+.login-box{
+width:360px;
+padding:40px;
+border:2px solid white;
+border-radius:25px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(10px);
+text-align:center;
+box-shadow:0 0 30px rgba(255,255,255,0.3);
 }
 
-.login-container{
-    position:relative;
-    z-index:2;
-    text-align:center;
-    width:350px;
-    padding:40px;
-    border:2px solid white;
-    border-radius:20px;
-    background:rgba(255,255,255,0.05);
-    backdrop-filter:blur(10px);
-    box-shadow:0 0 30px rgba(255,255,255,0.2);
+.kartal{
+width:140px;
+margin-bottom:20px;
+filter:drop-shadow(0 0 15px white);
 }
 
-.eagle{
-    width:150px;
-    margin-bottom:20px;
-    filter:drop-shadow(0 0 15px white);
+.login-box h1{
+font-size:42px;
+letter-spacing:5px;
+margin-bottom:15px;
 }
 
-.login-container h1{
-    margin-bottom:15px;
-    letter-spacing:5px;
-}
-
-.login-container p{
-    margin-bottom:25px;
-    color:#ccc;
+.login-box p{
+color:#ccc;
+margin-bottom:25px;
 }
 
 input{
-    width:100%;
-    padding:14px;
-    border:none;
-    border-radius:10px;
-    margin-bottom:15px;
-    background:#111;
-    color:white;
-    border:1px solid white;
+width:100%;
+padding:15px;
+background:#111;
+border:1px solid white;
+border-radius:12px;
+color:white;
+margin-bottom:15px;
+font-size:16px;
 }
 
 button{
-    width:100%;
-    padding:14px;
-    border:none;
-    border-radius:10px;
-    background:white;
-    color:black;
-    font-weight:bold;
-    cursor:pointer;
-    transition:0.3s;
+width:100%;
+padding:15px;
+border:none;
+border-radius:12px;
+background:white;
+color:black;
+font-weight:bold;
+font-size:16px;
+cursor:pointer;
+transition:0.3s;
 }
 
 button:hover{
-    transform:scale(1.05);
-    background:#ddd;
+transform:scale(1.04);
 }
 
 small{
-    display:block;
-    margin-top:15px;
-    color:#999;
+display:block;
+margin-top:15px;
+color:#aaa;
 }
 
-.home-body{
-    background:black;
-    color:white;
-    min-height:100vh;
-    padding:40px;
+/* HOME */
+
+.home-page{
+background:black;
+color:white;
+padding:40px;
+min-height:100vh;
 }
 
 header{
-    text-align:center;
-    margin-bottom:50px;
+text-align:center;
+margin-bottom:50px;
+}
+
+.main-logo{
+width:140px;
+margin-bottom:20px;
+filter:
+drop-shadow(0 0 10px white)
+brightness(1.3)
+contrast(1.3);
 }
 
 header h1{
-    font-size:50px;
-    margin-bottom:10px;
+font-size:55px;
+margin-bottom:10px;
 }
 
-.hero{
-    display:flex;
-    justify-content:center;
+header p{
+color:#ccc;
 }
 
-.hero-box{
-    width:800px;
-    background:#111;
-    border:2px solid white;
-    padding:40px;
-    border-radius:20px;
-    text-align:center;
-    box-shadow:0 0 25px rgba(255,255,255,0.2);
+.main-box{
+max-width:900px;
+margin:auto;
+padding:40px;
+border:2px solid white;
+border-radius:25px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(10px);
+box-shadow:0 0 30px rgba(255,255,255,0.2);
+text-align:center;
 }
 
-.logo{
-    width:120px;
-    margin-bottom:20px;
+.main-box h2{
+margin-bottom:20px;
+font-size:35px;
 }
 
-.hero-box p{
-    margin-top:20px;
-    line-height:1.8;
+.main-box p{
+line-height:1.8;
 }
 
 .quotes{
-    margin-top:30px;
+margin-top:30px;
 }
 
 .quotes p{
-    margin:10px 0;
-    color:#ddd;
+margin:10px 0;
+color:#ddd;
+font-style:italic;
 }
 
-.info-cards{
-    display:flex;
-    justify-content:center;
-    gap:30px;
-    margin-top:50px;
-    flex-wrap:wrap;
+.info-area{
+display:flex;
+justify-content:center;
+gap:25px;
+margin-top:50px;
+flex-wrap:wrap;
 }
 
-.card-box{
-    width:220px;
-    background:#111;
-    border:2px solid white;
-    border-radius:20px;
-    padding:30px;
-    text-align:center;
-    transition:0.3s;
+.info-card{
+width:220px;
+padding:30px;
+border:2px solid white;
+border-radius:20px;
+background:#111;
+text-align:center;
+transition:0.3s;
 }
 
-.card-box:hover{
-    transform:translateY(-10px);
+.info-card:hover{
+transform:translateY(-8px);
 }
 
-.card-box h3{
-    margin-bottom:15px;
+.info-card h3{
+margin-bottom:15px;
 }
 
-.taraftar-btn{
-    text-align:center;
-    margin-top:50px;
+.btn-area{
+text-align:center;
+margin-top:50px;
 }
 
-.taraftar-btn a{
-    text-decoration:none;
-    color:black;
-    background:white;
-    padding:15px 30px;
-    border-radius:10px;
-    font-weight:bold;
+.btn-area a{
+background:white;
+color:black;
+padding:15px 35px;
+border-radius:12px;
+text-decoration:none;
+font-weight:bold;
 }
 
-.card-body{
-    background:black;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    height:100vh;
-    color:white;
+/* CARD */
+
+.card-page{
+background:black;
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+color:white;
 }
 
 .fan-card{
-    width:430px;
-    height:250px;
-    border-radius:25px;
-    padding:25px;
-    background:
-    repeating-linear-gradient(
-        90deg,
-        black 0px,
-        black 40px,
-        white 40px,
-        white 80px
-    );
+width:450px;
+height:260px;
+border-radius:25px;
+padding:25px;
 
-    color:black;
-    position:relative;
-    overflow:hidden;
-    box-shadow:0 0 40px rgba(255,255,255,0.3);
+background:
+repeating-linear-gradient(
+90deg,
+black 0px,
+black 40px,
+white 40px,
+white 80px
+);
+
+border:2px solid rgba(255,255,255,0.5);
+
+box-shadow:0 0 35px rgba(255,255,255,0.25);
+
+position:relative;
+
+overflow:hidden;
 }
 
-.fan-card::before{
-    content:"1903";
-    position:absolute;
-    right:-10px;
-    bottom:-20px;
-    font-size:120px;
-    color:rgba(255,255,255,0.2);
-    font-weight:bold;
-}
-
-.top{
-    display:flex;
-    align-items:center;
-    gap:15px;
+.card-top{
+display:flex;
+align-items:center;
+gap:15px;
+z-index:2;
+position:relative;
 }
 
 .card-logo{
-    width:70px;
+width:70px;
 }
 
-.middle{
-    margin-top:25px;
+.card-top h2{
+color:white;
+text-shadow:0 0 10px black;
 }
 
-.middle h1{
-    font-size:38px;
-    margin-bottom:15px;
+.card-top span{
+background:rgba(0,0,0,0.75);
+padding:5px 10px;
+border-radius:8px;
+color:white;
 }
 
-.info p{
-    margin:5px 0;
-    font-weight:bold;
+.card-middle{
+margin-top:25px;
+position:relative;
+z-index:2;
 }
 
-.bottom{
-    position:absolute;
-    bottom:20px;
-    left:25px;
-    font-style:italic;
+.card-middle h1{
+font-size:40px;
+margin-bottom:15px;
+color:white;
+text-shadow:0 0 10px black;
 }
 
-.back-button{
-    margin-top:30px;
+.card-info p{
+margin:8px 0;
+background:rgba(0,0,0,0.75);
+padding:8px 12px;
+border-radius:10px;
+color:white;
+width:fit-content;
+font-weight:bold;
 }
 
-.back-button a{
-    background:white;
-    color:white;
-    text-decoration:none;
-    padding:12px 25px;
-    border-radius:10px;
-    font-weight:bold;
+.card-bottom{
+position:absolute;
+bottom:20px;
+left:25px;
+background:rgba(0,0,0,0.75);
+padding:8px 12px;
+border-radius:10px;
+color:white;
+font-style:italic;
 }
+
+.back-btn{
+margin-top:30px;
+}
+
+.back-btn a{
+background:white;
+color:black;
+padding:12px 25px;
+border-radius:10px;
+text-decoration:none;
+font-weight:bold;
+}
+
+/* MOBIL */
 
 @media(max-width:600px){
 
-    header h1{
-        font-size:35px;
-    }
+header h1{
+font-size:38px;
+}
 
-    .hero-box{
-        width:100%;
-    }
+.main-box{
+padding:25px;
+}
 
-    .fan-card{
-        width:95%;
-    }
+.fan-card{
+width:95%;
+height:auto;
+padding-bottom:80px;
+}
 
 }
+```
