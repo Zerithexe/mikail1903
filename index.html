@@ -1,42 +1,26 @@
-```html
 <!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mikail | Beşiktaş</title>
-
+<title>Mikail'e Özel BJK Sitesi</title>
 <link rel="stylesheet" href="style.css">
-
 </head>
-<body>
+<body class="login-body">
 
-<div class="bg"></div>
+<div class="login-box">
 
-<div class="login-container">
+<img src="kartal.png" class="kartal">
 
-<img src="./kartal.png" class="eagle">
+<h1>Mikail'e Özel Beşiktaş Sitesi</h1>
 
-<h1>KARA KARTAL</h1>
+<input type="password" id="password" placeholder="Şifre">
 
-<p>
-Şerefimizle yaşar, hakkımızla kazanırız.
-</p>
+<button onclick="checkPassword()">Giriş Yap</button>
 
-<input type="password" id="password" placeholder="Şifre:">
-
-<button onclick="login()">
-GİRİŞ YAP
-</button>
-
-<div class="bottom-text">
-Sadece gerçek Beşiktaşlılara özel.
-</div>
+<p id="error"></p>
 
 </div>
 
 <script src="script.js"></script>
-
 </body>
 </html>
-```
