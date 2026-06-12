@@ -11,7 +11,8 @@
     --beyaz: #f5f5f0;
     --kirik-beyaz: #e8e6df;
     --gri: #8a8a85;
-    --kartal: #c9a04e;
+    --kartal: #f5f5f0;
+    --vurgu: #d6d3c9;
     --kirmizi-vurgu: #b3372c;
   }
 
@@ -100,10 +101,10 @@
   }
 
   .kartal-silüet {
-    width: min(420px, 70vw);
+    width: min(440px, 80vw);
     opacity: 0;
     animation: kartalBelir 2.4s ease-out 0.3s forwards, kartalKanat 8s ease-in-out 2.7s infinite;
-    filter: drop-shadow(0 0 40px rgba(201,160,78,0.18));
+    filter: drop-shadow(0 0 50px rgba(245,245,240,0.12));
   }
   @keyframes kartalBelir {
     0% { opacity: 0; transform: translateY(30px) scale(0.92); }
@@ -177,25 +178,24 @@
   }
 
   .arma {
-    width: 86px;
-    height: 86px;
+    width: 110px;
+    height: 110px;
     margin: 0 auto 28px;
-    border: 2px solid var(--kartal);
+    border: none;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 38px;
     position: relative;
   }
   .arma::before, .arma::after {
     content: '';
     position: absolute;
-    border: 1px solid rgba(201,160,78,0.25);
+    border: 1px solid rgba(245,245,240,0.15);
     border-radius: 50%;
   }
-  .arma::before { width: 104px; height: 104px; }
-  .arma::after { width: 120px; height: 120px; }
+  .arma::before { width: 130px; height: 130px; }
+  .arma::after { width: 148px; height: 148px; }
 
   .giris-kutu h1 {
     font-size: clamp(32px, 7vw, 52px);
@@ -725,8 +725,22 @@
     pointer-events: none;
     opacity: 0.5;
     background:
-      radial-gradient(ellipse at top left, rgba(201,160,78,0.07), transparent 50%),
+      radial-gradient(ellipse at top left, rgba(245,245,240,0.05), transparent 50%),
       radial-gradient(ellipse at bottom right, rgba(179,55,44,0.06), transparent 50%);
+  }
+  .desen-katman::before {
+    content: '';
+    position: absolute;
+    top: 6%;
+    right: -8%;
+    width: 50vw;
+    max-width: 600px;
+    aspect-ratio: 500/320;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 320'%3E%3Cg fill='%23f5f5f0'%3E%3Cpath d='M252 95C270 88 300 84 335 86C380 89 425 100 480 122C430 124 385 122 350 128C390 138 430 152 470 175C425 168 385 160 350 158C380 175 410 196 435 222C395 205 360 192 330 184C345 202 358 224 365 250C340 225 318 205 298 192C296 178 290 158 278 138C270 122 260 106 252 95Z'/%3E%3Cpath d='M248 95C230 88 200 84 165 86C120 89 75 100 20 122C70 124 115 122 150 128C110 138 70 152 30 175C75 168 115 160 150 158C120 175 90 196 65 222C105 205 140 192 170 184C155 202 142 224 135 250C160 225 182 205 202 192C204 178 210 158 222 138C230 122 240 106 248 95Z'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+    transform: rotate(8deg);
   }
 
   .konfeti {
@@ -767,25 +781,68 @@
 <section class="ekran aktif" id="ekran-intro">
   <div class="intro-sahne">
     <div class="isik-huzme"></div>
-    <svg class="kartal-silüet" viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <!-- stilize kartal silueti: gövde + açık kanatlar -->
-      <g fill="#1a1a1a" stroke="#c9a04e" stroke-width="1.2" stroke-opacity="0.5">
-        <path d="M200 60
-                 C 195 50, 185 45, 175 48
-                 C 120 60, 40 80, 8 130
-                 C 60 122, 110 118, 150 125
-                 C 130 140, 95 158, 60 188
-                 C 110 178, 150 168, 182 156
-                 C 188 168, 196 178, 200 188
-                 C 204 178, 212 168, 218 156
-                 C 250 168, 290 178, 340 188
-                 C 305 158, 270 140, 250 125
-                 C 290 118, 340 122, 392 130
-                 C 360 80, 280 60, 225 48
-                 C 215 45, 205 50, 200 60 Z"/>
-        <ellipse cx="200" cy="62" rx="16" ry="14"/>
-        <path d="M200 50 C 196 42, 188 38, 180 40 L 196 48 Z" fill="#c9a04e" stroke="none"/>
-        <circle cx="207" cy="58" r="2" fill="#0a0a0a" stroke="none"/>
+    <svg class="kartal-silüet" viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- Avlanan kartal, kanatlar çapraz açık, gerçekçi tüy detayları - tamamen beyaz -->
+      <g fill="#f5f5f0">
+        <!-- sol (üst) kanat - geniş ve uzun -->
+        <path d="M345 250
+                 C 320 230, 270 210, 210 195
+                 C 150 180, 90 172, 40 175
+                 C 90 195, 140 205, 175 222
+                 C 120 222, 65 230, 15 248
+                 C 70 258, 130 258, 180 268
+                 C 130 280, 80 298, 35 322
+                 C 95 318, 155 312, 205 312
+                 C 165 332, 125 358, 90 388
+                 C 150 372, 210 358, 255 350
+                 C 270 340, 290 320, 310 300
+                 C 325 285, 338 268, 345 250 Z"/>
+        <!-- sağ (alt) kanat - hafif açık, geriye doğru -->
+        <path d="M395 330
+                 C 430 318, 470 312, 520 312
+                 C 580 312, 620 322, 660 340
+                 C 620 332, 575 330, 540 336
+                 C 590 348, 635 368, 670 396
+                 C 615 380, 560 366, 515 362
+                 C 555 384, 595 412, 625 446
+                 C 575 420, 525 398, 480 386
+                 C 460 396, 435 408, 410 416
+                 C 400 388, 393 358, 395 330 Z"/>
+        <!-- gövde / kuyruk -->
+        <path d="M375 280
+                 C 392 282, 405 296, 410 318
+                 C 416 348, 410 382, 396 414
+                 C 388 432, 378 448, 370 460
+                 L 350 460
+                 C 345 442, 340 422, 340 400
+                 C 340 372, 348 340, 360 312
+                 C 365 298, 370 288, 375 280 Z"/>
+        <!-- kuyruk tüyleri -->
+        <path d="M352 458 L 336 510 L 358 488 L 376 462 Z"/>
+        <!-- baş (öne bakan) -->
+        <path d="M388 282
+                 C 404 278, 422 282, 434 294
+                 C 444 304, 448 318, 444 330
+                 C 438 326, 430 322, 422 322
+                 C 426 330, 426 338, 420 344
+                 C 410 336, 398 326, 390 312
+                 C 384 302, 384 290, 388 282 Z"/>
+        <!-- pençeler (av üzerinde) -->
+        <path d="M376 458 C 372 470, 362 480, 350 484 C 356 472, 362 462, 370 456 Z"/>
+        <path d="M390 458 C 396 470, 406 478, 418 480 C 410 470, 402 462, 394 456 Z"/>
+      </g>
+      <!-- gaga -->
+      <path d="M442 322 C 452 320, 462 324, 466 332 C 458 334, 448 334, 440 330 Z" fill="#8a8a85" opacity="0.8"/>
+      <!-- göz -->
+      <circle cx="430" cy="306" r="3" fill="#0a0a0a"/>
+      <!-- tüy detay çizgileri - kanatlarda -->
+      <g stroke="#0a0a0a" stroke-opacity="0.18" stroke-width="1.4" fill="none">
+        <path d="M330 240 C 270 220, 180 200, 60 190"/>
+        <path d="M300 268 C 230 268, 130 270, 30 258"/>
+        <path d="M270 300 C 210 318, 130 340, 55 372"/>
+        <path d="M430 320 C 480 314, 560 316, 640 336"/>
+        <path d="M440 350 C 490 358, 560 376, 630 406"/>
+        <path d="M430 380 C 470 398, 530 426, 580 456"/>
       </g>
     </svg>
     <div class="intro-metin">
@@ -798,7 +855,35 @@
 <!-- EKRAN 1: ŞİFRE -->
 <section class="ekran" id="ekran-sifre">
   <div class="giris-kutu">
-    <div class="arma">⚜</div>
+    <div class="arma">
+      <svg viewBox="0 0 100 120" width="64" height="76" aria-hidden="true">
+        <!-- kalkan dış çizgi -->
+        <path d="M50 4 L92 16 L92 52 C92 80, 74 102, 50 116 C26 102, 8 80, 8 52 L8 16 Z"
+              fill="#0a0a0a" stroke="#f5f5f0" stroke-width="2.5"/>
+        <!-- iç çerçeve -->
+        <path d="M50 12 L84 22 L84 52 C84 76, 68 94, 50 106 C32 94, 16 76, 16 52 L16 22 Z"
+              fill="none" stroke="#f5f5f0" stroke-width="1" stroke-opacity="0.5"/>
+        <!-- kartal: açık kanatlı, kalkanın üstünde -->
+        <g fill="#f5f5f0">
+          <path d="M50 30
+                   C 45 26, 35 24, 22 26
+                   C 32 30, 40 34, 44 38
+                   C 34 38, 24 41, 16 46
+                   C 28 47, 40 47, 47 50
+                   C 49 54, 50 58, 50 62
+                   C 51 58, 52 54, 54 50
+                   C 61 47, 73 47, 85 46
+                   C 77 41, 67 38, 57 38
+                   C 61 34, 69 30, 79 26
+                   C 66 24, 56 26, 51 30 Z"/>
+          <!-- gövde -->
+          <path d="M50 50 C 54 50, 57 56, 57 64 C 57 70, 54 76, 50 80 C 46 76, 43 70, 43 64 C 43 56, 46 50, 50 50 Z"/>
+        </g>
+        <!-- 1903 yazısı -->
+        <text x="50" y="100" text-anchor="middle" font-family="Helvetica, Arial, sans-serif"
+              font-size="15" font-weight="700" letter-spacing="2" fill="#f5f5f0">1903</text>
+      </svg>
+    </div>
     <span class="eyebrow">Özel Erişim · Sadakat Doğrulaması</span>
     <h1>Kara Kartal<em>Arşivi</em></h1>
     <p class="giris-aciklama">
@@ -859,7 +944,13 @@
         <div class="kart-parlama" id="kart-parlama"></div>
         <div class="kart-ust">
           <div class="kart-logo">
-            <span class="kart-logo-amblem">⚜</span>
+            <span class="kart-logo-amblem">
+              <svg viewBox="0 0 100 100" width="13" height="13" aria-hidden="true">
+                <path d="M50 30 C 54 30, 57 33, 57 38 C 57 44, 53 49, 50 53 C 47 49, 43 44, 43 38 C 43 33, 46 30, 50 30 Z" fill="#f5f5f0"/>
+                <path d="M50 36 L 30 42 C 38 44, 46 45, 50 44 Z" fill="#f5f5f0"/>
+                <path d="M50 36 L 70 42 C 62 44, 54 45, 50 44 Z" fill="#f5f5f0"/>
+              </svg>
+            </span>
             <span class="kart-kulup">Beşiktaş JK</span>
           </div>
           <span class="kart-yil" id="kart-yil-goster">1903</span>
@@ -1104,7 +1195,7 @@
 
   // ---- KONFETİ ----
   function konfetiPatlat() {
-    const renkler = ['#c9a04e', '#f5f5f0', '#b3372c', '#3a3a3a'];
+    const renkler = ['#f5f5f0', '#e8e6df', '#b3372c', '#3a3a3a'];
     for (let i = 0; i < 40; i++) {
       const parca = document.createElement('div');
       parca.className = 'konfeti';
