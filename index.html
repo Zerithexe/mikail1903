@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mikail - Gerçek Kartal</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:black;
+    color:white;
+    text-align:center;
+}
+
+#login{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+#site{
+    display:none;
+}
+
+input{
+    padding:12px;
+    margin:15px;
+    border:none;
+    border-radius:8px;
+    width:220px;
+}
+
+button{
+    padding:12px 20px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+section{
+    padding:80px 20px;
+}
+
+.card{
+    background:#111;
+    border:1px solid white;
+    border-radius:15px;
+    padding:20px;
+    margin:10px auto;
+    max-width:300px;
+}
+
+h1{
+    margin-bottom:20px;
+}
+
+.quote{
+    font-size:24px;
+    max-width:700px;
+    margin:auto;
+}
+</style>
+</head>
+
+<body>
+
+<div id="login">
+    <h1>⚫⚪ ÖZEL ERİŞİM ⚫⚪</h1>
+    <p>Bu sayfa Mikail için hazırlanmıştır.</p>
+
+    <input type="password" id="password" placeholder="Şifre">
+
+    <button onclick="checkPassword()">Giriş Yap</button>
+</div>
+
+<div id="site">
+
+<section>
+    <h1>🦅 MİKAİL</h1>
+    <h2>GERÇEK KARTAL</h2>
+
+    <p style="margin-top:20px;">
+        Bazıları takım tutar.<br>
+        Bazıları ise Beşiktaşlı doğar.
+    </p>
+
+    <br>
+
+    <button onclick="playMusic()">
+        🎵 Marşı Çal
+    </button>
+
+    <audio id="mars" src="mars.mp3"></audio>
+</section>
+
+<section>
+    <h1>📊 Taraftar Analizi</h1>
+
+    <div class="card">
+        <h2>%100</h2>
+        <p>Sadakat</p>
+    </div>
+
+    <div class="card">
+        <h2>%100</h2>
+        <p>Kartallık</p>
+    </div>
+
+    <div class="card">
+        <h2>∞</h2>
+        <p>Beşiktaş Sevgisi</p>
+    </div>
+</section>
+
+<section>
+    <h1>🪪 Taraftar Kimliği</h1>
+
+    <div class="card">
+        <p><b>Ad:</b> Mikail</p>
+        <p><b>Ünvan:</b> Gerçek Kartal</p>
+        <p><b>Geçerlilik:</b> Ömür Boyu</p>
+    </div>
+</section>
+
+<section>
+    <h1>🤖 Yapay Zeka Sonucu</h1>
+
+    <div class="card">
+        <p>✓ Sadakat bulundu</p>
+        <p>✓ Kartal ruhu bulundu</p>
+        <p>✓ Beşiktaş sevgisi bulundu</p>
+
+        <br>
+
+        <h2>MİKAİL = GERÇEK KARTAL 🦅</h2>
+    </div>
+</section>
+
+<section>
+    <h1>🏆 Yılın Kartalı</h1>
+
+    <div class="card">
+        Bu ödül,
+        Beşiktaş sevgisi ve sadakati nedeniyle
+        Mikail'e verilmiştir.
+    </div>
+</section>
+
+<section>
+    <div class="quote">
+        "Şampiyonluklar gelir geçer,
+        ama Beşiktaş sevgisi kalır."
+    </div>
+</section>
+
+<section>
+    <h1>İYİ Kİ VARSIN MİKAİL 🦅</h1>
+
+    <button onclick="kartalMesaji()">
+        Gizli Mesaj
+    </button>
+</section>
+
+</div>
+
+<script>
+
+function checkPassword(){
+
+    let pass = document.getElementById("password").value;
+
+    if(pass === "1903"){
+        document.getElementById("login").style.display = "none";
+        document.getElementById("site").style.display = "block";
+    }else{
+        alert("Şifre yanlış!");
+    }
+}
+
+function playMusic(){
+    document.getElementById("mars").play();
+}
+
+function kartalMesaji(){
+    alert("En Büyük Kartal: MİKAİL 🦅");
+}
+
+</script>
+
+</body>
+</html>
