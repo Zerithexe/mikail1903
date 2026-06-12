@@ -1,14 +1,17 @@
-// =========================
+// =====================
 // MIKAIL BJK SYSTEM
-// =========================
+// =====================
 
 let clickCount = 0;
 
-// Şifre Kontrolü
+// =====================
+// GİRİŞ SİSTEMİ
+// =====================
+
 function checkPassword() {
 
-    const password =
-    document.getElementById("password").value;
+    const pass =
+    document.getElementById("password");
 
     const error =
     document.getElementById("error");
@@ -16,21 +19,23 @@ function checkPassword() {
     const eagleSound =
     document.getElementById("kartalSesi");
 
+    if (!pass) return;
+
     const messages = [
 
         "🦅 Mikail'e yakalandın!",
 
         "⚫⚪ Bu sistem sadece gerçek Beşiktaşlılar içindir!",
 
-        "🦅 Kartal seni izliyor!",
-
         "🏆 1903 ruhunu taşımıyorsun!",
 
-        "⚠️ Yetkisiz giriş tespit edildi!"
+        "🦅 Kartal seni izliyor!",
+
+        "❌ Yanlış şifre!"
 
     ];
 
-    if (password === "1903") {
+    if (pass.value === "1903") {
 
         if (eagleSound) {
 
@@ -39,13 +44,13 @@ function checkPassword() {
         }
 
         error.style.color = "#00ff88";
-        error.innerHTML = "✓ Giriş Başarılı";
-
-        document.body.style.opacity = "0.8";
+        error.innerHTML =
+        "✓ Giriş Başarılı";
 
         setTimeout(() => {
 
-            window.location.href = "home.html";
+            window.location.href =
+            "home.html";
 
         }, 1500);
 
@@ -56,304 +61,366 @@ function checkPassword() {
         error.style.color = "red";
 
         error.innerHTML =
-            messages[Math.floor(Math.random() * messages.length)];
+        messages[
+        Math.floor(
+        Math.random() *
+        messages.length
+        )
+        ];
 
     }
 
 }
 
-// Enter Tuşu
-document.addEventListener("keydown", function (e) {
+// ENTER İLE GİRİŞ
 
-    if (e.key === "Enter") {
+document.addEventListener(
+"keydown",
+function(e){
 
-        const passwordBox =
-        document.getElementById("password");
+const pass =
+document.getElementById("password");
 
-        if (passwordBox) {
+if(pass && e.key==="Enter"){
 
-            checkPassword();
+checkPassword();
 
-        }
+}
 
-    }
+}
+);
 
-});
-
-// =========================
+// =====================
 // KURULUŞ SAYACI
-// =========================
+// =====================
 
-function updateCounter() {
+function updateCounter(){
 
-    const counter =
-    document.getElementById("counter");
+const counter =
+document.getElementById("counter");
 
-    if (!counter) return;
+if(!counter) return;
 
-    const founded =
-    new Date("1903-03-03");
+const founded =
+new Date("1903-03-03");
 
-    const now =
-    new Date();
+const now =
+new Date();
 
-    const diff =
-    now - founded;
+const diff =
+now - founded;
 
-    const years =
-    Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+const years =
+Math.floor(
+diff /
+(1000*60*60*24*365.25)
+);
 
-    const days =
-    Math.floor(diff / (1000 * 60 * 60 * 24));
+const days =
+Math.floor(
+diff /
+(1000*60*60*24)
+);
 
-    counter.innerHTML = `
+counter.innerHTML =
 
-    <h2>${years} Yıllık Efsane</h2>
+`
+<div>
 
-    <h3>${days.toLocaleString()} Günlük Tarih</h3>
+<h2>
+${years} Yıllık Efsane
+</h2>
 
-    <p>
-    Beşiktaş 1903'ten beri yaşamaya devam ediyor.
-    </p>
+<br>
 
-    `;
+<h3>
+${days.toLocaleString()}
+Günlük Tarih
+</h3>
+
+</div>
+`;
 
 }
-
-setInterval(updateCounter, 1000);
 
 updateCounter();
 
-// =========================
+setInterval(
+updateCounter,
+1000
+);
+
+// =====================
 // TARAFTAR KARTI
-// =========================
+// =====================
 
-function createCard() {
+function createCard(){
 
-    const nameInput =
-    document.getElementById("name");
+const nameInput =
+document.getElementById("name");
 
-    const photoInput =
-    document.getElementById("photo");
+const photoInput =
+document.getElementById("photo");
 
-    const cardName =
-    document.getElementById("cardName");
+const cardName =
+document.getElementById("cardName");
 
-    const cardNo =
-    document.getElementById("cardNo");
+const cardNo =
+document.getElementById("cardNo");
 
-    const preview =
-    document.getElementById("preview");
+const preview =
+document.getElementById("preview");
 
-    let userName =
-    nameInput.value.trim();
+if(!cardName) return;
 
-    if (userName === "") {
+let userName =
+nameInput.value.trim();
 
-        userName = "Mikail";
+if(userName===""){
 
-    }
-
-    cardName.innerText =
-    userName.toUpperCase();
-
-    cardNo.innerText =
-    "BJK-" +
-    Math.floor(
-        100000 + Math.random() * 900000
-    );
-
-    if (
-        photoInput.files &&
-        photoInput.files[0]
-    ) {
-
-        const reader =
-        new FileReader();
-
-        reader.onload =
-        function (e) {
-
-            preview.src =
-            e.target.result;
-
-        };
-
-        reader.readAsDataURL(
-            photoInput.files[0]
-        );
-
-    }
+userName = "Mikail";
 
 }
 
-// =========================
+cardName.innerText =
+userName.toUpperCase();
+
+cardNo.innerText =
+
+"BJK-" +
+
+Math.floor(
+
+100000 +
+
+Math.random()*900000
+
+);
+
+if(
+
+photoInput &&
+photoInput.files &&
+photoInput.files[0]
+
+){
+
+const reader =
+new FileReader();
+
+reader.onload =
+function(e){
+
+preview.src =
+e.target.result;
+
+};
+
+reader.readAsDataURL(
+photoInput.files[0]
+);
+
+}
+
+}
+
+// =====================
 // KART İNDİR
-// =========================
+// =====================
 
-function downloadCard() {
+function downloadCard(){
 
-    const card =
-    document.getElementById("card");
+const card =
+document.getElementById("card");
 
-    if (!card) return;
+if(!card) return;
 
-    html2canvas(card).then(canvas => {
+html2canvas(card)
+.then(canvas=>{
 
-        const link =
-        document.createElement("a");
+const link =
+document.createElement("a");
 
-        link.download =
-        "Mikail_BJK_Karti.png";
+link.download =
+"Mikail_BJK_Karti.png";
 
-        link.href =
-        canvas.toDataURL("image/png");
+link.href =
+canvas.toDataURL("image/png");
 
-        link.click();
+link.click();
 
-    });
+});
 
 }
 
-// =========================
+// =====================
 // KARA KARTAL MODU
-// =========================
+// =====================
 
 window.addEventListener(
 "DOMContentLoaded",
-function () {
+function(){
 
-    const logo =
-    document.getElementById("logo");
+const logo =
+document.getElementById("logo");
 
-    if (!logo) return;
+if(!logo) return;
 
-    logo.addEventListener(
-    "click",
-    function () {
+logo.addEventListener(
+"click",
+function(){
 
-        clickCount++;
+clickCount++;
 
-        if (clickCount >= 5) {
+if(clickCount >= 5){
 
-            document.body.classList.add(
-                "kartalMode"
-            );
+document.body.classList.add(
+"kartalMode"
+);
 
-            alert(
-                "🦅 KARA KARTAL MODU AKTİF!"
-            );
+alert(
+"🦅 KARA KARTAL MODU AKTİF!"
+);
 
-        }
+}
 
-    });
+}
+);
 
-});
+}
+);
 
-// =========================
+// =====================
 // PARÇACIK SİSTEMİ
-// =========================
+// =====================
 
 window.addEventListener(
 "load",
-function () {
+function(){
 
-    const canvas =
-    document.getElementById("particles");
+const canvas =
+document.getElementById("particles");
 
-    if (!canvas) return;
+if(!canvas) return;
 
-    const ctx =
-    canvas.getContext("2d");
+const ctx =
+canvas.getContext("2d");
 
-    canvas.width =
-    window.innerWidth;
+canvas.width =
+window.innerWidth;
 
-    canvas.height =
-    window.innerHeight;
+canvas.height =
+window.innerHeight;
 
-    let particles = [];
+let particles = [];
 
-    for (let i = 0; i < 120; i++) {
+for(let i=0;i<120;i++){
 
-        particles.push({
+particles.push({
 
-            x:
-            Math.random() *
-            canvas.width,
+x:
+Math.random() *
+canvas.width,
 
-            y:
-            Math.random() *
-            canvas.height,
+y:
+Math.random() *
+canvas.height,
 
-            radius:
-            Math.random() * 2 + 1,
+radius:
+Math.random()*2+1,
 
-            speedX:
-            (Math.random() - 0.5) * 0.7,
+speedX:
+(Math.random()-0.5)*0.8,
 
-            speedY:
-            (Math.random() - 0.5) * 0.7
-
-        });
-
-    }
-
-    function animate() {
-
-        ctx.clearRect(
-            0,
-            0,
-            canvas.width,
-            canvas.height
-        );
-
-        particles.forEach(p => {
-
-            ctx.beginPath();
-
-            ctx.arc(
-                p.x,
-                p.y,
-                p.radius,
-                0,
-                Math.PI * 2
-            );
-
-            ctx.fillStyle =
-            "rgba(255,255,255,.8)";
-
-            ctx.fill();
-
-            p.x += p.speedX;
-            p.y += p.speedY;
-
-            if (
-                p.x < 0 ||
-                p.x > canvas.width
-            ) {
-
-                p.speedX *= -1;
-
-            }
-
-            if (
-                p.y < 0 ||
-                p.y > canvas.height
-            ) {
-
-                p.speedY *= -1;
-
-            }
-
-        });
-
-        requestAnimationFrame(
-            animate
-        );
-
-    }
-
-    animate();
+speedY:
+(Math.random()-0.5)*0.8
 
 });
+
+}
+
+function animate(){
+
+ctx.clearRect(
+0,
+0,
+canvas.width,
+canvas.height
+);
+
+particles.forEach(p=>{
+
+ctx.beginPath();
+
+ctx.arc(
+p.x,
+p.y,
+p.radius,
+0,
+Math.PI*2
+);
+
+ctx.fillStyle =
+"rgba(255,255,255,.8)";
+
+ctx.fill();
+
+p.x += p.speedX;
+p.y += p.speedY;
+
+if(
+p.x < 0 ||
+p.x > canvas.width
+){
+
+p.speedX *= -1;
+
+}
+
+if(
+p.y < 0 ||
+p.y > canvas.height
+){
+
+p.speedY *= -1;
+
+}
+
+});
+
+requestAnimationFrame(
+animate
+);
+
+}
+
+animate();
+
+}
+);
+
+// =====================
+// BOYUT DEĞİŞİNCE
+// =====================
+
+window.addEventListener(
+"resize",
+function(){
+
+const canvas =
+document.getElementById(
+"particles"
+);
+
+if(canvas){
+
+canvas.width =
+window.innerWidth;
+
+canvas.height =
+window.innerHeight;
+
+}
+
+}
+);
