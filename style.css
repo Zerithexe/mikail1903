@@ -2,7 +2,7 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial,Helvetica,sans-serif;
+font-family:'Segoe UI',Arial,sans-serif;
 }
 
 body{
@@ -22,7 +22,7 @@ height:100%;
 z-index:-1;
 }
 
-/* GİRİŞ */
+/* GİRİŞ SAYFASI */
 
 .login-page{
 height:100vh;
@@ -34,7 +34,7 @@ linear-gradient(
 135deg,
 #000,
 #111,
-#1d1d1d
+#1a1a1a
 );
 }
 
@@ -46,26 +46,26 @@ background:
 radial-gradient(
 circle,
 transparent,
-rgba(0,0,0,.8)
+rgba(0,0,0,.85)
 );
 }
 
 .login-container{
 width:90%;
-max-width:700px;
+max-width:750px;
 padding:40px;
 text-align:center;
 border-radius:25px;
 background:rgba(255,255,255,.05);
-backdrop-filter:blur(10px);
+backdrop-filter:blur(12px);
 border:1px solid rgba(255,255,255,.1);
 box-shadow:
-0 0 25px rgba(255,255,255,.08);
-z-index:2;
+0 0 35px rgba(255,255,255,.08);
+z-index:5;
 }
 
 .kartal-logo{
-width:250px;
+width:240px;
 animation:float 4s infinite ease-in-out;
 }
 
@@ -83,15 +83,17 @@ width:100%;
 max-width:350px;
 padding:15px;
 border:none;
-border-radius:10px;
+outline:none;
+border-radius:12px;
 margin:10px;
 font-size:16px;
+background:#fff;
 }
 
 button{
 padding:14px 30px;
 border:none;
-border-radius:10px;
+border-radius:12px;
 cursor:pointer;
 font-weight:bold;
 font-size:16px;
@@ -123,42 +125,61 @@ padding-bottom:50px;
 }
 
 .top-bar{
-padding:30px;
 text-align:center;
+padding:30px;
 }
 
 .logo{
 width:180px;
 cursor:pointer;
-transition:.4s;
+transition:1s;
 }
 
 .logo:hover{
-transform:scale(1.08);
+transform:
+rotateY(360deg)
+scale(1.1);
+filter:
+drop-shadow(0 0 20px white);
 }
 
 .hero{
 display:flex;
 justify-content:center;
-margin-top:30px;
+margin-top:20px;
 }
 
 .hero-card{
 width:90%;
-max-width:700px;
-padding:30px;
-border-radius:20px;
-background:rgba(255,255,255,.05);
+max-width:800px;
+padding:35px;
+border-radius:25px;
+background:
+rgba(255,255,255,.05);
 backdrop-filter:blur(10px);
+text-align:center;
+box-shadow:
+0 0 20px rgba(255,255,255,.08);
+animation:
+fadeIn 2s ease;
+}
+
+#welcomeTitle{
+font-size:42px;
+margin-bottom:15px;
+animation:
+glow 3s infinite;
 }
 
 .section{
 width:90%;
-max-width:900px;
+max-width:950px;
 margin:35px auto;
-padding:25px;
-background:rgba(255,255,255,.05);
+padding:30px;
 border-radius:20px;
+background:
+rgba(255,255,255,.05);
+backdrop-filter:blur(10px);
 }
 
 .section h2{
@@ -170,43 +191,47 @@ list-style:none;
 }
 
 .special-list li{
-padding:10px;
+padding:12px;
+border-bottom:
+1px solid rgba(255,255,255,.08);
 }
 
 .main-btn{
 background:white;
 color:black;
+font-size:18px;
 }
 
-footer{
-margin-top:40px;
-text-align:center;
-padding:30px;
+.main-btn:hover{
+background:#ddd;
 }
-
-/* KURULUŞ SAYACI */
 
 #counter{
 font-size:24px;
 font-weight:bold;
+text-align:center;
 }
 
-/* UÇAN KARTAL */
-
-.flying-eagle{
-position:fixed;
-top:120px;
-left:-300px;
-pointer-events:none;
-z-index:50;
+#gununSozu{
+font-size:22px;
+font-style:italic;
+text-align:center;
+color:#ddd;
 }
 
-.flying-eagle img{
-width:180px;
-animation:fly 18s linear infinite;
+#mikailCounter{
+font-size:24px;
+text-align:center;
+font-weight:bold;
 }
 
-/* KART SAYFASI */
+footer{
+text-align:center;
+padding:40px;
+margin-top:40px;
+}
+
+/* CARD PAGE */
 
 .card-page{
 padding:40px 20px;
@@ -223,7 +248,7 @@ margin-bottom:30px;
 
 #card{
 
-width:450px;
+width:500px;
 max-width:95%;
 
 margin:auto;
@@ -247,7 +272,7 @@ position:relative;
 overflow:hidden;
 
 box-shadow:
-0 0 25px rgba(255,255,255,.2);
+0 0 30px rgba(255,255,255,.25);
 
 }
 
@@ -269,7 +294,8 @@ rgba(255,255,255,.2),
 transparent
 );
 
-animation:shine 4s infinite;
+animation:
+shine 4s infinite;
 
 }
 
@@ -280,7 +306,7 @@ gap:15px;
 }
 
 .card-logo{
-width:80px;
+width:90px;
 }
 
 .card-center{
@@ -292,18 +318,12 @@ flex-wrap:wrap;
 }
 
 #preview{
-
 width:120px;
 height:120px;
-
 border-radius:15px;
-
 background:#333;
-
 object-fit:cover;
-
 border:2px solid white;
-
 }
 
 .card-info{
@@ -336,10 +356,45 @@ color:black;
 /* KARA KARTAL MODU */
 
 .kartalMode{
-
-animation:shake .2s infinite;
-
+animation:
+shake .2s infinite;
 background:black;
+}
+
+/* ANİMASYONLAR */
+
+@keyframes glow{
+
+0%{
+text-shadow:
+0 0 10px white;
+}
+
+50%{
+text-shadow:
+0 0 30px white;
+}
+
+100%{
+text-shadow:
+0 0 10px white;
+}
+
+}
+
+@keyframes fadeIn{
+
+from{
+opacity:0;
+transform:
+translateY(20px);
+}
+
+to{
+opacity:1;
+transform:
+translateY(0);
+}
 
 }
 
@@ -363,24 +418,6 @@ transform:translate(-2px,-2px);
 
 100%{
 transform:translate(2px,2px);
-}
-
-}
-
-/* ANİMASYONLAR */
-
-@keyframes fly{
-
-0%{
-transform:
-translateX(0)
-rotate(0deg);
-}
-
-100%{
-transform:
-translateX(calc(100vw + 500px))
-rotate(5deg);
 }
 
 }
