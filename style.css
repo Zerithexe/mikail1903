@@ -1,327 +1,77 @@
-# style.css
-
-```css
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial;
-}
-
 body{
-background:black;
+background:#050505;
 color:white;
-overflow-x:hidden;
-}
-
-/* GİRİŞ */
-
-.bg{
-position:fixed;
-width:100%;
-height:100%;
-background:
-radial-gradient(circle at center,
-rgba(255,255,255,0.08),
-black 70%);
-z-index:-1;
-}
-
-.login-container{
-width:360px;
-padding:40px;
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-border:1px solid rgba(255,255,255,0.4);
-border-radius:25px;
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(12px);
+font-family:Arial;
 text-align:center;
-box-shadow:0 0 40px rgba(255,255,255,0.15);
-}
-
-.eagle{
-width:140px;
-margin-bottom:20px;
-filter:
-drop-shadow(0 0 15px white)
-brightness(1.1);
-}
-
-.login-container h1{
-font-size:42px;
-letter-spacing:5px;
-margin-bottom:15px;
-}
-
-.login-container p{
-color:#ccc;
-margin-bottom:25px;
-line-height:1.6;
-}
-
-input{
-width:100%;
-padding:15px;
-background:#111;
-border:1px solid rgba(255,255,255,0.4);
-border-radius:12px;
-color:white;
-margin-bottom:15px;
-font-size:16px;
-}
-
-button{
-width:100%;
-padding:15px;
-border:none;
-border-radius:12px;
-background:white;
-color:black;
-font-weight:bold;
-cursor:pointer;
-transition:0.3s;
-}
-
-button:hover{
-transform:scale(1.03);
-}
-
-.bottom-text{
-margin-top:15px;
-color:#aaa;
-font-size:14px;
-}
-
-/* HOME */
-
-.home{
-padding:40px;
-min-height:100vh;
+margin:0;
 }
 
 header{
-text-align:center;
-margin-bottom:50px;
+padding:30px;
 }
 
 .logo{
-width:140px;
-margin-bottom:20px;
-filter:
-drop-shadow(0 0 12px white)
-brightness(1.3)
-contrast(1.2);
+width:180px;
 }
 
-header h1{
-font-size:55px;
-margin-bottom:10px;
-}
-
-header p{
-color:#ccc;
-}
-
-.hero{
-display:flex;
-justify-content:center;
-}
-
-.hero-box{
-max-width:850px;
-padding:45px;
-border-radius:25px;
-background:rgba(255,255,255,0.05);
-border:1px solid rgba(255,255,255,0.2);
-backdrop-filter:blur(12px);
-text-align:center;
-box-shadow:0 0 30px rgba(255,255,255,0.1);
-}
-
-.hero-box h2{
-font-size:36px;
+.kartal{
+width:300px;
 margin-bottom:20px;
 }
 
-.hero-box p{
-line-height:1.8;
-}
-
-.quotes{
-margin-top:30px;
-}
-
-.quotes p{
-margin:10px 0;
-font-style:italic;
-color:#ddd;
-}
-
-.card-btn{
-display:inline-block;
-margin-top:35px;
-padding:15px 35px;
-background:white;
-color:black;
-text-decoration:none;
-border-radius:12px;
-font-weight:bold;
-}
-
-/* CARD */
-
-.card-page{
+.login-body{
 display:flex;
-flex-direction:column;
 justify-content:center;
 align-items:center;
 height:100vh;
-padding:20px;
 }
 
-.fan-card{
-width:430px;
-height:250px;
-
-background:
-repeating-linear-gradient(
-90deg,
-#000 0px,
-#000 40px,
-#fff 40px,
-#fff 80px
-);
-
-border-radius:25px;
-padding:25px;
-position:relative;
-overflow:hidden;
-
-box-shadow:0 0 40px rgba(255,255,255,0.2);
+.login-box{
+background:#111;
+padding:30px;
+border-radius:15px;
 }
 
-.card-overlay{
-position:absolute;
-width:100%;
-height:100%;
-left:0;
-top:0;
-background:rgba(0,0,0,0.2);
+input{
+padding:10px;
+margin:10px;
+width:250px;
 }
 
-.card-top,
-.card-middle,
-.card-bottom{
-position:relative;
-z-index:2;
-}
-
-.card-top{
-display:flex;
-align-items:center;
-gap:15px;
-}
-
-.card-logo{
-width:70px;
-}
-
-.card-top h2{
-color:white;
-text-shadow:0 0 10px black;
-}
-
-.card-top span{
-background:rgba(0,0,0,0.7);
-padding:5px 10px;
-border-radius:8px;
-color:white;
-font-size:13px;
-}
-
-.card-middle{
-margin-top:25px;
-}
-
-.card-middle h1{
-font-size:40px;
-margin-bottom:15px;
-color:white;
-text-shadow:0 0 10px black;
-}
-
-.info-box{
-display:inline-block;
-margin:5px 0;
-background:rgba(0,0,0,0.75);
-padding:8px 12px;
-border-radius:10px;
-color:white;
-font-weight:bold;
-}
-
-.card-bottom{
-position:absolute;
-bottom:20px;
-left:25px;
-background:rgba(0,0,0,0.75);
-padding:8px 12px;
-border-radius:10px;
-font-style:italic;
-color:white;
-}
-
-.buttons{
-margin-top:30px;
-display:flex;
-gap:15px;
-flex-wrap:wrap;
-justify-content:center;
-}
-
-.buttons a,
-.buttons button{
-padding:14px 25px;
+button{
+padding:10px 20px;
 background:white;
 color:black;
 border:none;
-border-radius:12px;
-text-decoration:none;
-font-weight:bold;
 cursor:pointer;
+font-weight:bold;
 }
 
-/* MOBİL */
-
-@media(max-width:600px){
-
-.login-container{
-width:92%;
+button:hover{
+transform:scale(1.05);
 }
 
-header h1{
-font-size:38px;
+#counter{
+font-size:30px;
+font-weight:bold;
 }
 
-.hero-box{
-padding:25px;
+#card{
+width:350px;
+margin:auto;
+padding:20px;
+background:white;
+color:black;
+border-radius:15px;
 }
 
-.fan-card{
-width:100%;
-max-width:430px;
-height:auto;
-padding-bottom:90px;
+.card-logo{
+width:100px;
 }
 
-.card-bottom{
-left:20px;
-right:20px;
-bottom:15px;
+#preview{
+width:150px;
+height:150px;
+object-fit:cover;
+margin-top:10px;
 }
-
-}
-```
