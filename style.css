@@ -9,53 +9,64 @@ font-family:Arial;
 }
 
 body{
+background:black;
+color:white;
 overflow-x:hidden;
 }
 
-/* LOGIN */
+/* GİRİŞ */
 
-.login-page{
-background:black;
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-color:white;
+.bg{
+position:fixed;
+width:100%;
+height:100%;
+background:
+radial-gradient(circle at center,
+rgba(255,255,255,0.08),
+black 70%);
+z-index:-1;
 }
 
-.login-box{
+.login-container{
 width:360px;
 padding:40px;
-border:2px solid white;
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+border:1px solid rgba(255,255,255,0.4);
 border-radius:25px;
 background:rgba(255,255,255,0.05);
-backdrop-filter:blur(10px);
+backdrop-filter:blur(12px);
 text-align:center;
-box-shadow:0 0 30px rgba(255,255,255,0.3);
+box-shadow:0 0 40px rgba(255,255,255,0.15);
 }
 
-.kartal{
+.eagle{
 width:140px;
 margin-bottom:20px;
-filter:drop-shadow(0 0 15px white);
+filter:
+drop-shadow(0 0 15px white)
+brightness(1.1);
 }
 
-.login-box h1{
+.login-container h1{
 font-size:42px;
 letter-spacing:5px;
 margin-bottom:15px;
 }
 
-.login-box p{
+.login-container p{
 color:#ccc;
 margin-bottom:25px;
+line-height:1.6;
 }
 
 input{
 width:100%;
 padding:15px;
 background:#111;
-border:1px solid white;
+border:1px solid rgba(255,255,255,0.4);
 border-radius:12px;
 color:white;
 margin-bottom:15px;
@@ -70,26 +81,23 @@ border-radius:12px;
 background:white;
 color:black;
 font-weight:bold;
-font-size:16px;
 cursor:pointer;
 transition:0.3s;
 }
 
 button:hover{
-transform:scale(1.04);
+transform:scale(1.03);
 }
 
-small{
-display:block;
+.bottom-text{
 margin-top:15px;
 color:#aaa;
+font-size:14px;
 }
 
 /* HOME */
 
-.home-page{
-background:black;
-color:white;
+.home{
 padding:40px;
 min-height:100vh;
 }
@@ -99,13 +107,13 @@ text-align:center;
 margin-bottom:50px;
 }
 
-.main-logo{
+.logo{
 width:140px;
 margin-bottom:20px;
 filter:
-drop-shadow(0 0 10px white)
+drop-shadow(0 0 12px white)
 brightness(1.3)
-contrast(1.3);
+contrast(1.2);
 }
 
 header h1{
@@ -117,24 +125,28 @@ header p{
 color:#ccc;
 }
 
-.main-box{
-max-width:900px;
-margin:auto;
-padding:40px;
-border:2px solid white;
+.hero{
+display:flex;
+justify-content:center;
+}
+
+.hero-box{
+max-width:850px;
+padding:45px;
 border-radius:25px;
 background:rgba(255,255,255,0.05);
-backdrop-filter:blur(10px);
-box-shadow:0 0 30px rgba(255,255,255,0.2);
+border:1px solid rgba(255,255,255,0.2);
+backdrop-filter:blur(12px);
 text-align:center;
+box-shadow:0 0 30px rgba(255,255,255,0.1);
 }
 
-.main-box h2{
+.hero-box h2{
+font-size:36px;
 margin-bottom:20px;
-font-size:35px;
 }
 
-.main-box p{
+.hero-box p{
 line-height:1.8;
 }
 
@@ -144,92 +156,73 @@ margin-top:30px;
 
 .quotes p{
 margin:10px 0;
-color:#ddd;
 font-style:italic;
+color:#ddd;
 }
 
-.info-area{
-display:flex;
-justify-content:center;
-gap:25px;
-margin-top:50px;
-flex-wrap:wrap;
-}
-
-.info-card{
-width:220px;
-padding:30px;
-border:2px solid white;
-border-radius:20px;
-background:#111;
-text-align:center;
-transition:0.3s;
-}
-
-.info-card:hover{
-transform:translateY(-8px);
-}
-
-.info-card h3{
-margin-bottom:15px;
-}
-
-.btn-area{
-text-align:center;
-margin-top:50px;
-}
-
-.btn-area a{
+.card-btn{
+display:inline-block;
+margin-top:35px;
+padding:15px 35px;
 background:white;
 color:black;
-padding:15px 35px;
-border-radius:12px;
 text-decoration:none;
+border-radius:12px;
 font-weight:bold;
 }
 
 /* CARD */
 
 .card-page{
-background:black;
-height:100vh;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-color:white;
+height:100vh;
+padding:20px;
 }
 
 .fan-card{
-width:450px;
-height:260px;
-border-radius:25px;
-padding:25px;
+width:430px;
+height:250px;
 
 background:
 repeating-linear-gradient(
 90deg,
-black 0px,
-black 40px,
-white 40px,
-white 80px
+#000 0px,
+#000 40px,
+#fff 40px,
+#fff 80px
 );
 
-border:2px solid rgba(255,255,255,0.5);
-
-box-shadow:0 0 35px rgba(255,255,255,0.25);
-
+border-radius:25px;
+padding:25px;
 position:relative;
-
 overflow:hidden;
+
+box-shadow:0 0 40px rgba(255,255,255,0.2);
+}
+
+.card-overlay{
+position:absolute;
+width:100%;
+height:100%;
+left:0;
+top:0;
+background:rgba(0,0,0,0.2);
+}
+
+.card-top,
+.card-middle,
+.card-bottom{
+position:relative;
+z-index:2;
 }
 
 .card-top{
 display:flex;
 align-items:center;
 gap:15px;
-z-index:2;
-position:relative;
 }
 
 .card-logo{
@@ -242,16 +235,15 @@ text-shadow:0 0 10px black;
 }
 
 .card-top span{
-background:rgba(0,0,0,0.75);
+background:rgba(0,0,0,0.7);
 padding:5px 10px;
 border-radius:8px;
 color:white;
+font-size:13px;
 }
 
 .card-middle{
 margin-top:25px;
-position:relative;
-z-index:2;
 }
 
 .card-middle h1{
@@ -261,13 +253,13 @@ color:white;
 text-shadow:0 0 10px black;
 }
 
-.card-info p{
-margin:8px 0;
+.info-box{
+display:inline-block;
+margin:5px 0;
 background:rgba(0,0,0,0.75);
 padding:8px 12px;
 border-radius:10px;
 color:white;
-width:fit-content;
 font-weight:bold;
 }
 
@@ -278,39 +270,57 @@ left:25px;
 background:rgba(0,0,0,0.75);
 padding:8px 12px;
 border-radius:10px;
-color:white;
 font-style:italic;
+color:white;
 }
 
-.back-btn{
+.buttons{
 margin-top:30px;
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+justify-content:center;
 }
 
-.back-btn a{
+.buttons a,
+.buttons button{
+padding:14px 25px;
 background:white;
 color:black;
-padding:12px 25px;
-border-radius:10px;
+border:none;
+border-radius:12px;
 text-decoration:none;
 font-weight:bold;
+cursor:pointer;
 }
 
-/* MOBIL */
+/* MOBİL */
 
 @media(max-width:600px){
+
+.login-container{
+width:92%;
+}
 
 header h1{
 font-size:38px;
 }
 
-.main-box{
+.hero-box{
 padding:25px;
 }
 
 .fan-card{
-width:95%;
+width:100%;
+max-width:430px;
 height:auto;
-padding-bottom:80px;
+padding-bottom:90px;
+}
+
+.card-bottom{
+left:20px;
+right:20px;
+bottom:15px;
 }
 
 }
