@@ -1,42 +1,148 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
+
 <meta charset="UTF-8">
-<title>Taraftar Kartı</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BJK Taraftar Kartı</title>
+
 <link rel="stylesheet" href="style.css">
+
 </head>
-<body>
 
-<h1>Taraftar Kartı Oluştur</h1>
+<body class="card-page">
 
-<input type="text" id="name" placeholder="Adın">
+<canvas id="particles"></canvas>
 
-<input type="file" id="photo">
+<h1 class="page-title">
 
-<button onclick="createCard()">
-Kart Oluştur
+🦅 Beşiktaş Taraftar Kartı
+
+</h1>
+
+<div class="form-box">
+
+<input
+type="text"
+id="name"
+placeholder="Ad Soyad">
+
+<input
+type="file"
+id="photo"
+accept="image/*">
+
+<button
+class="main-btn"
+onclick="createCard()">
+
+Kartı Oluştur
+
 </button>
-
-<div id="card">
-
-<img src="bjklogo.png" class="card-logo">
-
-<h2 id="cardName">MİKAİL</h2>
-
-<p>Beşiktaş Taraftarı</p>
-
-<p id="cardNo"></p>
-
-<img id="preview">
 
 </div>
 
-<button onclick="downloadCard()">
-Kartı İndir
+<div id="card">
+
+<div class="shine"></div>
+
+<div class="card-header">
+
+<img
+src="bjklogo.png"
+class="card-logo">
+
+<div>
+
+<h2 id="cardName">
+
+MİKAİL
+
+</h2>
+
+<p>
+
+BEŞİKTAŞ JK
+
+</p>
+
+</div>
+
+</div>
+
+<div class="card-center">
+
+<img
+id="preview"
+src="">
+
+<div class="card-info">
+
+<p>
+
+Taraftar Seviye:
+ELİT
+
+</p>
+
+<p>
+
+Sadakat:
+%100
+
+</p>
+
+<p id="cardNo">
+
+BJK-190300
+
+</p>
+
+</div>
+
+</div>
+
+<div class="card-footer">
+
+<div class="fake-qr">
+
+██ ██ ██
+
+<br>
+
+█ ██ █ █
+
+<br>
+
+██ ███ ██
+
+</div>
+
+<div>
+
+⚫⚪
+KARA KARTAL
+
+</div>
+
+</div>
+
+</div>
+
+<button
+class="download-btn"
+onclick="downloadCard()">
+
+💾 Kartı İndir
+
 </button>
 
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
 <script src="script.js"></script>
 
 </body>
+
 </html>
