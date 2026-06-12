@@ -3,198 +3,649 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mikail - Gerçek Kartal</title>
-
+<title>Kara Kartal Taraftar Kartı</title>
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, sans-serif;
-}
+  :root {
+    --siyah: #0a0a0a;
+    --siyah-2: #161616;
+    --beyaz: #f5f5f0;
+    --kirik-beyaz: #e8e6df;
+    --gri: #8a8a85;
+    --kartal: #c9a04e;
+    --kirmizi-vurgu: #b3372c;
+  }
 
-body{
-    background:black;
-    color:white;
-    text-align:center;
-}
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-#login{
-    height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-}
+  html, body {
+    height: 100%;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: var(--siyah);
+    color: var(--beyaz);
+    overflow-x: hidden;
+  }
 
-#site{
-    display:none;
-}
+  body {
+    background-image:
+      repeating-linear-gradient(135deg, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 2px, transparent 2px, transparent 40px);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
 
-input{
-    padding:12px;
-    margin:15px;
-    border:none;
-    border-radius:8px;
-    width:220px;
-}
+  /* ====== ORTAK ====== */
+  .ekran {
+    width: 100%;
+    min-height: 100vh;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    position: relative;
+    z-index: 2;
+  }
+  .ekran.aktif { display: flex; }
 
-button{
-    padding:12px 20px;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
-    font-weight:bold;
-}
+  .eyebrow {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    font-size: 11px;
+    color: var(--kartal);
+    margin-bottom: 18px;
+    display: block;
+    text-align: center;
+  }
 
-section{
-    padding:80px 20px;
-}
+  /* ====== GİRİŞ EKRANI ====== */
+  .giris-kutu {
+    text-align: center;
+    max-width: 440px;
+    width: 100%;
+  }
 
-.card{
-    background:#111;
-    border:1px solid white;
-    border-radius:15px;
-    padding:20px;
-    margin:10px auto;
-    max-width:300px;
-}
+  .arma {
+    width: 86px;
+    height: 86px;
+    margin: 0 auto 28px;
+    border: 2px solid var(--kartal);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 38px;
+    position: relative;
+  }
+  .arma::before, .arma::after {
+    content: '';
+    position: absolute;
+    border: 1px solid rgba(201,160,78,0.25);
+    border-radius: 50%;
+  }
+  .arma::before { width: 104px; height: 104px; }
+  .arma::after { width: 120px; height: 120px; }
 
-h1{
-    margin-bottom:20px;
-}
+  .giris-kutu h1 {
+    font-size: clamp(32px, 7vw, 52px);
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    line-height: 1.15;
+    margin-bottom: 10px;
+  }
+  .giris-kutu h1 em {
+    font-style: italic;
+    color: var(--kartal);
+    display: block;
+    font-size: 0.55em;
+    letter-spacing: 0.4em;
+    margin-top: 8px;
+  }
 
-.quote{
-    font-size:24px;
-    max-width:700px;
-    margin:auto;
-}
+  .giris-aciklama {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: var(--gri);
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 22px 0 34px;
+    letter-spacing: 0.02em;
+  }
+
+  .sifre-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: center;
+  }
+
+  .sifre-input-sarmal {
+    position: relative;
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .sifre-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(245,245,240,0.25);
+    color: var(--beyaz);
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.5em;
+    text-align: center;
+    padding: 12px 0;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  .sifre-input::placeholder { color: rgba(245,245,240,0.18); letter-spacing: 0.5em; }
+  .sifre-input:focus { border-color: var(--kartal); }
+
+  .sifre-label {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gri);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .gonder-btn {
+    margin-top: 8px;
+    background: transparent;
+    border: 1px solid var(--kartal);
+    color: var(--kartal);
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    padding: 14px 40px;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  .gonder-btn:hover { background: var(--kartal); color: var(--siyah); }
+
+  .hata-mesaj {
+    color: var(--kirmizi-vurgu);
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    height: 18px;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+  .hata-mesaj.gosteriliyor { opacity: 1; }
+
+  .sifre-input.titreme { animation: titre 0.4s; }
+  @keyframes titre {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-8px); }
+    40% { transform: translateX(8px); }
+    60% { transform: translateX(-5px); }
+    80% { transform: translateX(5px); }
+  }
+
+  /* ====== KART OLUŞTURMA EKRANI ====== */
+  .form-kutu {
+    max-width: 480px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .form-kutu h2 {
+    font-size: clamp(26px, 5vw, 38px);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    margin-bottom: 14px;
+  }
+  .form-kutu h2 span { color: var(--kartal); font-style: italic; }
+
+  .form-aciklama {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: var(--gri);
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 36px;
+  }
+
+  .alan-grubu { margin-bottom: 26px; text-align: left; }
+
+  .alan-label {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gri);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .alan-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(245,245,240,0.25);
+    color: var(--beyaz);
+    font-family: 'Georgia', serif;
+    font-size: 22px;
+    padding: 10px 0;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  .alan-input:focus { border-color: var(--kartal); }
+  .alan-input::placeholder { color: rgba(245,245,240,0.18); }
+
+  .rozet-secim {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 6px;
+  }
+  .rozet-secenek {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    border: 1px solid rgba(245,245,240,0.2);
+    color: var(--gri);
+    padding: 9px 16px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    background: transparent;
+  }
+  .rozet-secenek:hover { border-color: var(--kartal); color: var(--kartal); }
+  .rozet-secenek.secili {
+    background: var(--kartal);
+    border-color: var(--kartal);
+    color: var(--siyah);
+  }
+
+  /* ====== KART EKRANI ====== */
+  .kart-sahne {
+    max-width: 520px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .taraftar-karti {
+    width: 100%;
+    max-width: 380px;
+    aspect-ratio: 16 / 10;
+    background: linear-gradient(155deg, #161616 0%, #0a0a0a 60%, #1d1d1d 100%);
+    border: 1px solid rgba(201,160,78,0.4);
+    border-radius: 14px;
+    padding: 28px 30px;
+    position: relative;
+    overflow: hidden;
+    text-align: left;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.02);
+    transform: rotateX(8deg) rotateY(-4deg);
+    transition: transform 0.4s ease;
+  }
+  .taraftar-karti:hover { transform: rotateX(0deg) rotateY(0deg); }
+
+  .taraftar-karti::before {
+    content: '';
+    position: absolute;
+    top: -60%; right: -30%;
+    width: 260px; height: 260px;
+    background: radial-gradient(circle, rgba(201,160,78,0.12), transparent 70%);
+    pointer-events: none;
+  }
+
+  .kart-ust {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+  }
+  .kart-kulup {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--kartal);
+  }
+  .kart-yil {
+    font-size: 11px;
+    color: var(--gri);
+    letter-spacing: 0.15em;
+  }
+
+  .kart-orta {
+    margin-top: 28px;
+  }
+  .kart-isim-label {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gri);
+    margin-bottom: 6px;
+  }
+  .kart-isim {
+    font-size: clamp(24px, 6vw, 34px);
+    letter-spacing: 0.04em;
+  }
+  .kart-rozet {
+    margin-top: 14px;
+    display: inline-block;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--kirmizi-vurgu);
+    border: 1px solid rgba(179,55,44,0.5);
+    padding: 6px 14px;
+    border-radius: 30px;
+  }
+
+  .kart-alt {
+    position: absolute;
+    bottom: 24px; left: 30px; right: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+  }
+  .kart-no {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--gri);
+  }
+  .kart-amblem {
+    width: 34px; height: 34px;
+    border: 1.5px solid var(--kartal);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: var(--kartal);
+  }
+
+  /* mesaj */
+  .ozel-mesaj {
+    margin-top: 40px;
+    max-width: 460px;
+    font-size: 16px;
+    line-height: 1.9;
+    color: var(--kirik-beyaz);
+    font-style: italic;
+    border-top: 1px solid rgba(245,245,240,0.1);
+    padding-top: 28px;
+  }
+  .ozel-mesaj .imza {
+    display: block;
+    margin-top: 16px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-style: normal;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--kartal);
+  }
+
+  /* müzik */
+  .mars-alani {
+    margin-top: 36px;
+    width: 100%;
+    max-width: 460px;
+  }
+  .mars-btn {
+    background: transparent;
+    border: 1px solid var(--kartal);
+    color: var(--kartal);
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    padding: 14px 36px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .mars-btn:hover { background: var(--kartal); color: var(--siyah); }
+  .mars-btn .nota { font-size: 14px; }
+
+  .video-sarmal {
+    margin-top: 20px;
+    width: 100%;
+    aspect-ratio: 16/9;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(201,160,78,0.3);
+    display: none;
+  }
+  .video-sarmal.gorunur { display: block; }
+  .video-sarmal iframe { width: 100%; height: 100%; border: none; }
+
+  /* ====== AMBİYANS ====== */
+  .desen-katman {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.5;
+    background:
+      radial-gradient(ellipse at top left, rgba(201,160,78,0.07), transparent 50%),
+      radial-gradient(ellipse at bottom right, rgba(179,55,44,0.06), transparent 50%);
+  }
+
+  .konfeti {
+    position: fixed;
+    top: -10px;
+    width: 8px;
+    height: 14px;
+    z-index: 5;
+    opacity: 0.9;
+    animation: dus linear forwards;
+  }
+  @keyframes dus {
+    to { transform: translateY(110vh) rotate(540deg); opacity: 0; }
+  }
+
+  footer.alt-not {
+    margin-top: 44px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(138,138,133,0.5);
+    text-align: center;
+  }
+
+  @media (max-width: 480px) {
+    .taraftar-karti { transform: none; }
+    .taraftar-karti:hover { transform: none; }
+  }
 </style>
 </head>
-
 <body>
 
-<div id="login">
-    <h1>⚫⚪ ÖZEL ERİŞİM ⚫⚪</h1>
-    <p>Bu sayfa Mikail için hazırlanmıştır.</p>
+<div class="desen-katman"></div>
 
-    <input type="password" id="password" placeholder="Şifre">
-
-    <button onclick="checkPassword()">Giriş Yap</button>
-</div>
-
-<div id="site">
-
-<section>
-    <h1>🦅 MİKAİL</h1>
-    <h2>GERÇEK KARTAL</h2>
-
-    <p style="margin-top:20px;">
-        Bazıları takım tutar.<br>
-        Bazıları ise Beşiktaşlı doğar.
+<!-- EKRAN 1: ŞİFRE -->
+<section class="ekran aktif" id="ekran-sifre">
+  <div class="giris-kutu">
+    <div class="arma">⚜</div>
+    <span class="eyebrow">Özel Erişim · Sadakat Doğrulaması</span>
+    <h1>Kara Kartal<em>Arşivi</em></h1>
+    <p class="giris-aciklama">
+      Bu kapının ardına sadece gerçek taraftarlar geçebilir.<br>
+      Kuruluş yılını gir, kimliğini doğrula.
     </p>
-
-    <br>
-
-    <button onclick="playMusic()">
-        🎵 Marşı Çal
-    </button>
-
-    <audio id="mars" src="mars.mp3"></audio>
+    <form class="sifre-form" id="sifre-form">
+      <div class="sifre-input-sarmal">
+        <span class="sifre-label">Geçiş Kodu</span>
+        <input type="password" id="sifre-input" class="sifre-input" placeholder="••••" maxlength="6" inputmode="numeric" autocomplete="off">
+      </div>
+      <div class="hata-mesaj" id="hata-mesaj">Yanlış kod. Çarşı seni tanımıyor.</div>
+      <button type="submit" class="gonder-btn">Kapıyı Aç</button>
+    </form>
+  </div>
 </section>
 
-<section>
-    <h1>📊 Taraftar Analizi</h1>
-
-    <div class="card">
-        <h2>%100</h2>
-        <p>Sadakat</p>
-    </div>
-
-    <div class="card">
-        <h2>%100</h2>
-        <p>Kartallık</p>
-    </div>
-
-    <div class="card">
-        <h2>∞</h2>
-        <p>Beşiktaş Sevgisi</p>
-    </div>
+<!-- EKRAN 2: KART OLUŞTUR -->
+<section class="ekran" id="ekran-form">
+  <div class="form-kutu">
+    <span class="eyebrow">Hoş Geldin</span>
+    <h2>Taraftar Kartını <span>Oluştur</span></h2>
+    <p class="form-aciklama">
+      Bu kart senin için özel olarak hazırlanacak. Bilgilerini gir, kartın anında oluşsun.
+    </p>
+    <form id="kart-form">
+      <div class="alan-grubu">
+        <span class="alan-label">İsim</span>
+        <input type="text" id="isim-input" class="alan-input" placeholder="Mikail" value="Mikail" required>
+      </div>
+      <div class="alan-grubu">
+        <span class="alan-label">Taraftarlık Yılı (kalbinin Beşiktaş'la attığı yıl)</span>
+        <input type="number" id="yil-input" class="alan-input" placeholder="örn. 2010" min="1903" max="2026" value="1903">
+      </div>
+      <div class="alan-grubu">
+        <span class="alan-label">Ünvanını Seç</span>
+        <div class="rozet-secim" id="rozet-secim">
+          <button type="button" class="rozet-secenek secili" data-rozet="Çarşı Lideri">Çarşı Lideri</button>
+          <button type="button" class="rozet-secenek" data-rozet="Kartal Aşığı">Kartal Aşığı</button>
+          <button type="button" class="rozet-secenek" data-rozet="12. Adam">12. Adam</button>
+          <button type="button" class="rozet-secenek" data-rozet="Vodafone Park Efsanesi">Vodafone Park Efsanesi</button>
+          <button type="button" class="rozet-secenek" data-rozet="Siyah-Beyaz Yürek">Siyah-Beyaz Yürek</button>
+        </div>
+      </div>
+      <button type="submit" class="gonder-btn">Kartı Oluştur</button>
+    </form>
+  </div>
 </section>
 
-<section>
-    <h1>🪪 Taraftar Kimliği</h1>
+<!-- EKRAN 3: KART -->
+<section class="ekran" id="ekran-kart">
+  <div class="kart-sahne">
+    <span class="eyebrow">Resmi Taraftar Kartı</span>
 
-    <div class="card">
-        <p><b>Ad:</b> Mikail</p>
-        <p><b>Ünvan:</b> Gerçek Kartal</p>
-        <p><b>Geçerlilik:</b> Ömür Boyu</p>
+    <div class="taraftar-karti">
+      <div class="kart-ust">
+        <span class="kart-kulup">Beşiktaş JK</span>
+        <span class="kart-yil" id="kart-yil-goster">1903</span>
+      </div>
+      <div class="kart-orta">
+        <div class="kart-isim-label">Taraftar</div>
+        <div class="kart-isim" id="kart-isim-goster">Mikail</div>
+        <span class="kart-rozet" id="kart-rozet-goster">Çarşı Lideri</span>
+      </div>
+      <div class="kart-alt">
+        <span class="kart-no" id="kart-no-goster">NO. 001903</span>
+        <span class="kart-amblem">⚜</span>
+      </div>
     </div>
-</section>
 
-<section>
-    <h1>🤖 Yapay Zeka Sonucu</h1>
-
-    <div class="card">
-        <p>✓ Sadakat bulundu</p>
-        <p>✓ Kartal ruhu bulundu</p>
-        <p>✓ Beşiktaş sevgisi bulundu</p>
-
-        <br>
-
-        <h2>MİKAİL = GERÇEK KARTAL 🦅</h2>
+    <div class="ozel-mesaj">
+      Bu kart, sadece siyah-beyaz uğruna her şeyi göze alanlara verilir.
+      Sana, kuzenine ve her zaman yanında olan herkese... iyi ki Beşiktaşlısın, iyi ki ailedensin.
+      <span class="imza">— Sevgiyle, kuzenin</span>
     </div>
-</section>
 
-<section>
-    <h1>🏆 Yılın Kartalı</h1>
-
-    <div class="card">
-        Bu ödül,
-        Beşiktaş sevgisi ve sadakati nedeniyle
-        Mikail'e verilmiştir.
+    <div class="mars-alani">
+      <button class="mars-btn" id="mars-btn"><span class="nota">♪</span> Beşiktaş Marşını Çal</button>
+      <div class="video-sarmal" id="video-sarmal">
+        <iframe id="mars-iframe" src="" title="Beşiktaş Marşı" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      </div>
     </div>
+
+    <footer class="alt-not">Beşiktaşımız · 1903'ten Sonsuza</footer>
+  </div>
 </section>
-
-<section>
-    <div class="quote">
-        "Şampiyonluklar gelir geçer,
-        ama Beşiktaş sevgisi kalır."
-    </div>
-</section>
-
-<section>
-    <h1>İYİ Kİ VARSIN MİKAİL 🦅</h1>
-
-    <button onclick="kartalMesaji()">
-        Gizli Mesaj
-    </button>
-</section>
-
-</div>
 
 <script>
+  const DOGRU_SIFRE = "1903";
 
-function checkPassword(){
+  const ekranSifre = document.getElementById('ekran-sifre');
+  const ekranForm = document.getElementById('ekran-form');
+  const ekranKart = document.getElementById('ekran-kart');
 
-    let pass = document.getElementById("password").value;
+  // ---- ŞİFRE EKRANI ----
+  const sifreForm = document.getElementById('sifre-form');
+  const sifreInput = document.getElementById('sifre-input');
+  const hataMesaj = document.getElementById('hata-mesaj');
 
-    if(pass === "1903"){
-        document.getElementById("login").style.display = "none";
-        document.getElementById("site").style.display = "block";
-    }else{
-        alert("Şifre yanlış!");
+  sifreForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (sifreInput.value.trim() === DOGRU_SIFRE) {
+      ekranSifre.classList.remove('aktif');
+      ekranForm.classList.add('aktif');
+      konfetiPatlat();
+    } else {
+      hataMesaj.classList.add('gosteriliyor');
+      sifreInput.classList.add('titreme');
+      setTimeout(() => sifreInput.classList.remove('titreme'), 400);
+      sifreInput.value = '';
     }
-}
+  });
 
-function playMusic(){
-    document.getElementById("mars").play();
-}
+  // ---- ROZET SEÇİMİ ----
+  const rozetButonlari = document.querySelectorAll('.rozet-secenek');
+  let seciliRozet = 'Çarşı Lideri';
+  rozetButonlari.forEach(btn => {
+    btn.addEventListener('click', () => {
+      rozetButonlari.forEach(b => b.classList.remove('secili'));
+      btn.classList.add('secili');
+      seciliRozet = btn.dataset.rozet;
+    });
+  });
 
-function kartalMesaji(){
-    alert("En Büyük Kartal: MİKAİL 🦅");
-}
+  // ---- KART OLUŞTURMA ----
+  const kartForm = document.getElementById('kart-form');
+  kartForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const isim = document.getElementById('isim-input').value.trim() || 'Mikail';
+    const yil = document.getElementById('yil-input').value.trim() || '1903';
 
+    document.getElementById('kart-isim-goster').textContent = isim;
+    document.getElementById('kart-yil-goster').textContent = yil;
+    document.getElementById('kart-rozet-goster').textContent = seciliRozet;
+    document.getElementById('kart-no-goster').textContent = 'NO. ' + yil.padStart(6, '0');
+
+    ekranForm.classList.remove('aktif');
+    ekranKart.classList.add('aktif');
+    konfetiPatlat();
+  });
+
+  // ---- MARŞ ----
+  const marsBtn = document.getElementById('mars-btn');
+  const videoSarmal = document.getElementById('video-sarmal');
+  const marsIframe = document.getElementById('mars-iframe');
+  let marsCalindi = false;
+
+  marsBtn.addEventListener('click', () => {
+    if (!marsCalindi) {
+      marsIframe.src = "https://www.youtube.com/embed/UXiAyIZjk7c?autoplay=1";
+      videoSarmal.classList.add('gorunur');
+      marsBtn.textContent = '♪ Marş Çalıyor...';
+      marsCalindi = true;
+    } else {
+      videoSarmal.classList.toggle('gorunur');
+    }
+  });
+
+  // ---- KONFETİ ----
+  function konfetiPatlat() {
+    const renkler = ['#c9a04e', '#f5f5f0', '#b3372c', '#3a3a3a'];
+    for (let i = 0; i < 40; i++) {
+      const parca = document.createElement('div');
+      parca.className = 'konfeti';
+      parca.style.left = Math.random() * 100 + 'vw';
+      parca.style.background = renkler[Math.floor(Math.random() * renkler.length)];
+      parca.style.animationDuration = (2 + Math.random() * 2) + 's';
+      parca.style.animationDelay = (Math.random() * 0.5) + 's';
+      document.body.appendChild(parca);
+      setTimeout(() => parca.remove(), 4500);
+    }
+  }
 </script>
 
 </body>
