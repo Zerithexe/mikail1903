@@ -16,4 +16,20 @@ alert("Yanlış şifre!");
 }
 
 }
+
+function downloadCard(){
+
+html2canvas(document.getElementById("card")).then(canvas => {
+
+let link = document.createElement("a");
+
+link.download = "mikail-besiktas-kart.png";
+
+link.href = canvas.toDataURL();
+
+link.click();
+
+});
+
+}
 ```
