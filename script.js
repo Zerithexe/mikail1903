@@ -1,95 +1,359 @@
-function checkPassword(){
+// =========================
+// MIKAIL BJK SYSTEM
+// =========================
 
-const pass = document.getElementById("password").value;
+let clickCount = 0;
 
-const messages = [
-"Mikail'e yakalandın!",
-"Kartal seni izliyor!",
-"Yanlış şifre!",
-"Sadece gerçek Beşiktaşlılar girebilir!"
-];
+// Şifre Kontrolü
+function checkPassword() {
 
-if(pass === "1903"){
-window.location.href="home.html";
-}
-else{
-document.getElementById("error").innerText =
-messages[Math.floor(Math.random()*messages.length)];
-}
-}
+    const password =
+    document.getElementById("password").value;
 
-function updateCounter(){
+    const error =
+    document.getElementById("error");
 
-const founded = new Date("1903-03-03");
-const now = new Date();
+    const eagleSound =
+    document.getElementById("kartalSesi");
 
-const diff = now - founded;
+    const messages = [
 
-const years =
-Math.floor(diff / (1000*60*60*24*365));
+        "🦅 Mikail'e yakalandın!",
 
-const days =
-Math.floor(diff / (1000*60*60*24));
+        "⚫⚪ Bu sistem sadece gerçek Beşiktaşlılar içindir!",
 
-const counter =
-document.getElementById("counter");
+        "🦅 Kartal seni izliyor!",
 
-if(counter){
-counter.innerHTML=
-`
-${years} Yıllık Efsane<br>
-${days} Günlük Tarih
-`;
-}
+        "🏆 1903 ruhunu taşımıyorsun!",
 
-}
+        "⚠️ Yetkisiz giriş tespit edildi!"
 
-setInterval(updateCounter,1000);
+    ];
 
-function createCard(){
+    if (password === "1903") {
 
-let name=document.getElementById("name").value;
+        if (eagleSound) {
 
-if(name=="") name="Mikail";
+            eagleSound.play().catch(() => {});
 
-document.getElementById("cardName").innerText=name;
+        }
 
-document.getElementById("cardNo").innerText=
-"1903"+Math.floor(Math.random()*999999);
+        error.style.color = "#00ff88";
+        error.innerHTML = "✓ Giriş Başarılı";
 
-let file=
-document.getElementById("photo").files[0];
+        document.body.style.opacity = "0.8";
 
-if(file){
+        setTimeout(() => {
 
-let reader=new FileReader();
+            window.location.href = "home.html";
 
-reader.onload=function(e){
+        }, 1500);
 
-document.getElementById("preview").src=
-e.target.result;
+    }
 
-};
+    else {
 
-reader.readAsDataURL(file);
+        error.style.color = "red";
+
+        error.innerHTML =
+            messages[Math.floor(Math.random() * messages.length)];
+
+    }
 
 }
 
-}
+// Enter Tuşu
+document.addEventListener("keydown", function (e) {
 
-function downloadCard(){
+    if (e.key === "Enter") {
 
-html2canvas(document.querySelector("#card"))
-.then(canvas=>{
+        const passwordBox =
+        document.getElementById("password");
 
-let a=document.createElement("a");
+        if (passwordBox) {
 
-a.download="Mikail_BJK_Kart.png";
+            checkPassword();
 
-a.href=canvas.toDataURL();
+        }
 
-a.click();
+    }
 
 });
 
+// =========================
+// KURULUŞ SAYACI
+// =========================
+
+function updateCounter() {
+
+    const counter =
+    document.getElementById("counter");
+
+    if (!counter) return;
+
+    const founded =
+    new Date("1903-03-03");
+
+    const now =
+    new Date();
+
+    const diff =
+    now - founded;
+
+    const years =
+    Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+
+    const days =
+    Math.floor(diff / (1000 * 60 * 60 * 24));
+
+    counter.innerHTML = `
+
+    <h2>${years} Yıllık Efsane</h2>
+
+    <h3>${days.toLocaleString()} Günlük Tarih</h3>
+
+    <p>
+    Beşiktaş 1903'ten beri yaşamaya devam ediyor.
+    </p>
+
+    `;
+
 }
+
+setInterval(updateCounter, 1000);
+
+updateCounter();
+
+// =========================
+// TARAFTAR KARTI
+// =========================
+
+function createCard() {
+
+    const nameInput =
+    document.getElementById("name");
+
+    const photoInput =
+    document.getElementById("photo");
+
+    const cardName =
+    document.getElementById("cardName");
+
+    const cardNo =
+    document.getElementById("cardNo");
+
+    const preview =
+    document.getElementById("preview");
+
+    let userName =
+    nameInput.value.trim();
+
+    if (userName === "") {
+
+        userName = "Mikail";
+
+    }
+
+    cardName.innerText =
+    userName.toUpperCase();
+
+    cardNo.innerText =
+    "BJK-" +
+    Math.floor(
+        100000 + Math.random() * 900000
+    );
+
+    if (
+        photoInput.files &&
+        photoInput.files[0]
+    ) {
+
+        const reader =
+        new FileReader();
+
+        reader.onload =
+        function (e) {
+
+            preview.src =
+            e.target.result;
+
+        };
+
+        reader.readAsDataURL(
+            photoInput.files[0]
+        );
+
+    }
+
+}
+
+// =========================
+// KART İNDİR
+// =========================
+
+function downloadCard() {
+
+    const card =
+    document.getElementById("card");
+
+    if (!card) return;
+
+    html2canvas(card).then(canvas => {
+
+        const link =
+        document.createElement("a");
+
+        link.download =
+        "Mikail_BJK_Karti.png";
+
+        link.href =
+        canvas.toDataURL("image/png");
+
+        link.click();
+
+    });
+
+}
+
+// =========================
+// KARA KARTAL MODU
+// =========================
+
+window.addEventListener(
+"DOMContentLoaded",
+function () {
+
+    const logo =
+    document.getElementById("logo");
+
+    if (!logo) return;
+
+    logo.addEventListener(
+    "click",
+    function () {
+
+        clickCount++;
+
+        if (clickCount >= 5) {
+
+            document.body.classList.add(
+                "kartalMode"
+            );
+
+            alert(
+                "🦅 KARA KARTAL MODU AKTİF!"
+            );
+
+        }
+
+    });
+
+});
+
+// =========================
+// PARÇACIK SİSTEMİ
+// =========================
+
+window.addEventListener(
+"load",
+function () {
+
+    const canvas =
+    document.getElementById("particles");
+
+    if (!canvas) return;
+
+    const ctx =
+    canvas.getContext("2d");
+
+    canvas.width =
+    window.innerWidth;
+
+    canvas.height =
+    window.innerHeight;
+
+    let particles = [];
+
+    for (let i = 0; i < 120; i++) {
+
+        particles.push({
+
+            x:
+            Math.random() *
+            canvas.width,
+
+            y:
+            Math.random() *
+            canvas.height,
+
+            radius:
+            Math.random() * 2 + 1,
+
+            speedX:
+            (Math.random() - 0.5) * 0.7,
+
+            speedY:
+            (Math.random() - 0.5) * 0.7
+
+        });
+
+    }
+
+    function animate() {
+
+        ctx.clearRect(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
+
+        particles.forEach(p => {
+
+            ctx.beginPath();
+
+            ctx.arc(
+                p.x,
+                p.y,
+                p.radius,
+                0,
+                Math.PI * 2
+            );
+
+            ctx.fillStyle =
+            "rgba(255,255,255,.8)";
+
+            ctx.fill();
+
+            p.x += p.speedX;
+            p.y += p.speedY;
+
+            if (
+                p.x < 0 ||
+                p.x > canvas.width
+            ) {
+
+                p.speedX *= -1;
+
+            }
+
+            if (
+                p.y < 0 ||
+                p.y > canvas.height
+            ) {
+
+                p.speedY *= -1;
+
+            }
+
+        });
+
+        requestAnimationFrame(
+            animate
+        );
+
+    }
+
+    animate();
+
+});
