@@ -2,25 +2,67 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<title>Mikail'e Özel BJK Sitesi</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mikail'e Özel Beşiktaş</title>
+
 <link rel="stylesheet" href="style.css">
+
 </head>
-<body class="login-body">
+<body class="login-page">
+
+<canvas id="particles"></canvas>
+
+<div class="overlay"></div>
+
+<div class="login-container">
+
+<img src="kartal.png" class="kartal-logo">
+
+<h1>Mikail'e Özel Beşiktaş Platformu</h1>
+
+<p class="subtitle">
+1903 Ruhu • Kara Kartal • Sonsuz Sadakat
+</p>
 
 <div class="login-box">
 
-<img src="kartal.png" class="kartal">
+<input
+type="password"
+id="password"
+placeholder="Şifreyi Gir">
 
-<h1>Mikail'e Özel Beşiktaş Sitesi</h1>
-
-<input type="password" id="password" placeholder="Şifre">
-
-<button onclick="checkPassword()">Giriş Yap</button>
+<button onclick="checkPassword()">
+Giriş Yap
+</button>
 
 <p id="error"></p>
 
 </div>
 
+<div class="security-info">
+
+<div class="security-card">
+🦅 Mikail Güvenlik Sistemi
+</div>
+
+<div class="security-card">
+⚫⚪ Yetkili Taraftar Girişi
+</div>
+
+<div class="security-card">
+🏆 Kuruluş: 1903
+</div>
+
+</div>
+
+</div>
+
+<audio id="kartalSesi">
+<source src="kartal.mp3" type="audio/mpeg">
+</audio>
+
 <script src="script.js"></script>
+
 </body>
 </html>
